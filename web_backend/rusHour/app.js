@@ -10,6 +10,7 @@ var users = require('./routes/users');
 
 var app = express();
 
+// for mongodb connection
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://root:root@127.0.0.1:27017/mydb', function(err) {
     if(err) {
