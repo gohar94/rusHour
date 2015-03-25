@@ -28,6 +28,24 @@ router.post('/', function(req, res, next) {
   });
 });
 
+/* PUT /users/:id */
+router.put('/:id', function(req, res, next) {
+  Users.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+/* PUT /users/favourites/:id (to append to favourites of admins) */
+router.put('/users/:id', function(req, res, next) {
+  if (req.body.admins) {
+    Users.findByIdAndUpdate(req.params.id, { $push: { favourites: req.body.favourites } }, function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  }
+});
+
 /* DELETE /todos/:id */
 router.delete('/:id', function(req, res, next) {
   Users.findByIdAndRemove(req.params.id, req.body, function (err, post) {

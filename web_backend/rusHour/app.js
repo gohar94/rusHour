@@ -7,8 +7,12 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var services = require('./routes/services');
+var cors = require('cors')
 
 var app = express();
+// enabling cross origin requests
+app.use(cors());
 
 // for mongodb connection
 var mongoose = require('mongoose');
@@ -34,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/services', services);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

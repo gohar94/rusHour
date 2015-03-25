@@ -9,7 +9,9 @@ var UsersSchema = new mongoose.Schema({
   phone: String,
   email: String,
   note: String,
-  updated_at: { type: Date, default: Date.now },
+  favourites: [{type: String}],
+  premium: Boolean,
+  updated_at: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Users', UsersSchema);
