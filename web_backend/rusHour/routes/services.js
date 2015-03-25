@@ -8,7 +8,7 @@ var Services = require('../models/Services.js');
 router.get('/', function(req, res, next) {
   Services.find(function (err, services) {
     if (err) return next(err);
-    res.render('services',{title: "Services", services: services});
+    res.render('services',{title: "RusHour | Services", services: services});
   });
 });
 
@@ -36,6 +36,14 @@ router.post('/', function(req, res, next) {
   });
 });
 
+/* POST services (increment count of rush.) */
+router.post('/update_count', function(req, res, next) {
+  Services.findByIdAndUpdate(req.body.id, { $inc: { count: req.body.count } }, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
 /* PUT /services/admins/:id (to append to admins of service) */
 router.put('/admins/:id', function(req, res, next) {
 	if (req.body.admins) {
@@ -48,12 +56,10 @@ router.put('/admins/:id', function(req, res, next) {
 
 /* PUT /services/:id */
 router.put('/:id', function(req, res, next) {
-	if (req.body.admins) {
 	  Services.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
 	    if (err) return next(err);
 	    res.json(post);
 	  });
-	}
 });
 
 /* DELETE /todos/:id */

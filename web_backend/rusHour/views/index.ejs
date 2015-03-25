@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="RusHour">
 
-    <title>RusHour</title>
+    <title><%= title %></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
@@ -38,6 +38,9 @@
     <script src="/javascripts/jquery.easing.min.js"></script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
+    <!-- For Socket.io to connect to Node.js server -->
+    <script src="/socket.io/socket.io.js"></script>
 
     <style>
       html, body, #map-canvas {

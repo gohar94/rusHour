@@ -10,6 +10,10 @@ module.exports = function (io) {
 		socket.on('chat message', function(msg){
 			io.emit('chat message', msg);
 		});
+
+		socket.on('update_count', function(msg){
+			io.emit('update_count', msg);
+		});
 	
 	});
 }
