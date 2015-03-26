@@ -1,3 +1,6 @@
+var mongoose = require('mongoose');
+var Services = require('../models/Services.js');
+
 module.exports = function (io) { 
 	io.on('connection', function(socket){
 		
@@ -12,8 +15,18 @@ module.exports = function (io) {
 		});
 
 		socket.on('update_count', function(msg){
-			io.emit('update_count', msg);
+			var id = msg.split("/")[0];
+			Services.findById(id, function (err, post) {
+				if (err) {
+					io.emit('update_count', err);
+				} else {
+					console.log(post);
+					var count = post["count"];
+					var reply = id+"/"+count;
+					io.emit('update_count', reply);
+				}
+			});
 		});
-	
+
 	});
 }

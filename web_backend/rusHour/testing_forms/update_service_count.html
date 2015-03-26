@@ -11,6 +11,10 @@
     <div>
     	<form accept-charset="UTF-8" action="http://localhost:3000/services/update_count" method="post" id="update_count">
 	    	<table>
+          <tr>
+            <td><label for="operator">Operator</label></td>
+            <td><input id="operator" name="operator" type="text" /></td>
+          </tr>
 		    	<tr>
 			    	<td><label for="count">Count</label></td>
 			    	<td><input id="count" name="count" type="text" /></td>
@@ -37,6 +41,7 @@
     
     var id = $("#id").val();
     var count = $("#count").val();
+    var operator = $("#operator").val();
     console.log(id);
     console.log(count);
 
@@ -45,14 +50,15 @@
         url: 'http://localhost:3000/services/update_count',
         type: 'post',
         dataType: 'json',
-        data: {id: id, count: count},
+        data: {id: id, count: count, operator: operator},
         success: function(data) {
           console.log(data);
           $('#messages').append($('<li>').text(data.name + " " + data.count));
         }
     });
 
-    socket.emit('update_count', $('#count').val());
+    var stringToEmit = id + "/" + count;
+    socket.emit('update_count', stringToEmit);
     $('#count').val('');
     
     return false;

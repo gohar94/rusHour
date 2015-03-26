@@ -27,11 +27,18 @@ $('.navbar-collapse ul li a').click(function() {
 });
 // TILL HERE
 
+function getInfoWindowContent(heading, body) {
+  var top = '<strong><h3 style="color: black;">' + heading + '</h3></strong>';
+  var middle = '<p style="color: black;">' + body + '</p>';
+  return top+middle;
+}
 
 // Google Maps Scripts
 // When the window has finished loading create our google map below
 var map;
 var image = '/images/marker-green-light.png';
+var markersArray = [];
+var infoWindowsArray = [];
 
 function initialize() {
   var mapOptions = {
@@ -51,6 +58,8 @@ function initialize() {
     }
   };
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  
+  // load markers from database data
   loadMarkers();
   
   // Try HTML5 geolocation
@@ -62,16 +71,19 @@ function initialize() {
           position: pos,
           map: map,
           icon: image,
-          title: 'My Current Location'
+          title: 'My Current Location',
+          id: "0"
       });
+  
       // CONTENT OF THE INFOBOX
-      var contentString = '<strong><h3 style="color: black;">This is my location</h3></strong>' +
-                        '<p style="color: black;">Yahan bhi daal saktay hain stuff but we need a style for infobox, ask qandeel to sketch something good.</p>';
+      var contentString = getInfoWindowContent("This is my location.", "I am here.");
 
-    var infowindow = new google.maps.InfoWindow({ content: contentString });
+      var infowindow = new google.maps.InfoWindow({ content: contentString });
+      markersArray.push(marker);
+      infoWindowsArray.push(infowindow);
 
-    // LISTENER TO OPEN INFOBOX
-    google.maps.event.addListener(marker, 'click', function() {
+      // LISTENER TO OPEN INFOBOX
+      google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(map,marker);
       });
       map.setCenter(pos);
@@ -100,10 +112,12 @@ function loadMarkers() {
             position: markerPosition,
             map: map,
             animation: google.maps.Animation.DROP,
-            description: this.name + " " + this.count,
+            description: this.name + " = " + this.count,
             icon: image,
             id: this._id
           });
+
+          markersArray.push(marker);
 
           // //hover in
           // google.maps.event.addListener(marker, 'mouseover', function() {
@@ -119,10 +133,10 @@ function loadMarkers() {
           //   }
           // });
           
-          var contentString = '<strong><h3 style="color: black;">' + marker.description + '</h3></strong>' +
-                        '<p style="color: black;">' + marker.id + '</p>';
+          var contentString = getInfoWindowContent(marker.description, marker.id);
           
           var infowindow = new google.maps.InfoWindow({ content: contentString });
+          infoWindowsArray.push(infowindow);
           
           google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map,marker);
@@ -201,6 +215,25 @@ $(function () {
 
 var socket = io();
 socket.on('update_count', function(msg){
-  // $('#messages').append($('<li>').text(msg));
-  console.log(msg);
+
+  var msgArray = msg.split("/");
+  var id = msgArray[0];
+  var count = msgArray[1];
+  
+  for (var i = 0; i < markersArray.length; i++) {
+    if (markersArray[i].id == id) {
+      var name = markersArray[i].description.split(" = ")[0];
+      var newContent = name + " = " + count;
+      markersArray[i].description = newContent;
+      for (var j = 0; j < infoWindowsArray.length; j++) {
+        var index = infoWindowsArray[j].content.indexOf(id);
+        // means that the id is present in this infowindow
+        if (index > -1) {
+          infoWindowsArray[j].setContent(getInfoWindowContent(newContent, id));
+          break;
+        }
+      }
+      break;
+    }
+  }
 });

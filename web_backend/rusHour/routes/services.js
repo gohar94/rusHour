@@ -38,10 +38,18 @@ router.post('/', function(req, res, next) {
 
 /* POST services (increment count of rush.) */
 router.post('/update_count', function(req, res, next) {
-  Services.findByIdAndUpdate(req.body.id, { $inc: { count: req.body.count } }, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+  if (req.body.operator == "inc") {
+    Services.findByIdAndUpdate(req.body.id, { $inc: { count: req.body.count } }, function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  } else {
+    // TODO: check for count going below zero
+    Services.findByIdAndUpdate(req.body.id, { $inc: { count: "-"+req.body.count } }, function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+  }
 });
 
 /* PUT /services/admins/:id (to append to admins of service) */
@@ -74,7 +82,6 @@ router.delete('/:id', function(req, res, next) {
 router.get('/search', function(req, res) {
    var regex = new RegExp(req.query["term"], 'i');
    var query = Services.find({name: regex}).sort({"updated_at":-1}).limit(20);
-        
       // Execute query in a callback and return services list
     query.exec(function(err, result) {
         if (!err) {
