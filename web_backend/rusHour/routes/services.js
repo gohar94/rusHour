@@ -3,6 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Services = require('../models/Services.js');
+var ServicesHistory = require('../models/ServicesHistory.js');
 
 /* GET services listing. */
 router.get('/', function(req, res, next) {
@@ -41,12 +42,20 @@ router.post('/update_count', function(req, res, next) {
   if (req.body.operator == "inc") {
     Services.findByIdAndUpdate(req.body.id, { $inc: { count: req.body.count } }, function (err, post) {
       if (err) return next(err);
+      // add to log in the history table
+      ServicesHistory.create({service_id: req.body.id, name: post["name"], delta: req.body.count, new_count: post["count"], operator: req.body.operator}, function (err, post2) {
+        if (err) return next(err);
+      });
       res.json(post);
     });
   } else {
     // TODO: check for count going below zero
     Services.findByIdAndUpdate(req.body.id, { $inc: { count: "-"+req.body.count } }, function (err, post) {
       if (err) return next(err);
+      // add to log in the history table
+      ServicesHistory.create({service_id: req.body.id, name: post["name"], delta: req.body.count, new_count: post["count"], operator: req.body.operator}, function (err, post2) {
+        if (err) return next(err);
+      });
       res.json(post);
     });
   }
@@ -75,6 +84,22 @@ router.delete('/:id', function(req, res, next) {
   Services.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
+  });
+});
+
+/* GET /services_history/:limit */
+router.get('/services_history', function(req, res) {
+  var query = ServicesHistory.find().sort({"created_at":-1}).limit(req.query["limit"]);
+  query.exec(function(err, result) {
+      if (!err) {
+         res.send(result, {
+            'Content-Type': 'application/json'
+         }, 200);
+      } else {
+         res.send(JSON.stringify(err), {
+            'Content-Type': 'application/json'
+         }, 404);
+      }
   });
 });
 

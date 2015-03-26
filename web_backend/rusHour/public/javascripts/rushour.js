@@ -213,6 +213,43 @@ $(function () {
   });
 });
 
+// TICKER INITIAL FILL
+function fillTickerInitialValues() {
+  $.ajax({
+    type: "GET",
+    cache: true,
+    url: 'http://localhost:3000/services/services_history?limit=10',
+    dataType: 'json',
+    
+    success: function(data){
+      jQuery.each(data , function() {
+        var name = this.name;
+        var action = "";
+        if (this.operator == "inc") {
+          action = "arrived at ";
+        } else {
+          action = "departed from ";
+        }
+        var noun = "";
+        if (this.delta == "1") {
+          noun = " person ";
+        } else {
+          noun = " people ";
+        }
+        var time_array = this.created_at.split("T")[1].split(":");
+        var time = time_array[0]+":"+time_array[1];
+        var ticker_string =  this.delta + noun + action + this.name + " at " + time;
+        $('#ticker').append($('<li>').text(ticker_string));
+      });
+    }, 
+    error: function(e) { 
+      console.log(e);
+    } 
+  });
+}
+window.onload = fillTickerInitialValues();
+
+// SOCKETS for realtime updates
 var socket = io();
 socket.on('update_count', function(msg){
 
@@ -239,5 +276,6 @@ socket.on('update_count', function(msg){
 });
 
 socket.on('update_ticker', function(msg){
-  $('#ticker').append($('<li>').text(msg));
+  var today = new Date();
+  $('#ticker').append($('<li>').text(msg + " at " + today.getHours()+":"+today.getMinutes()));
 });
