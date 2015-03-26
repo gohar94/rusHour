@@ -290,7 +290,7 @@ function makeChart() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://goharirfan.me:3000/services/services_history?limit=10&service_id=514760c9bdfc69743cc5ff8',
+    url: 'http://goharirfan.me:3000/services/services_history?limit=10&service_id=5514760c9bdfc69743cc5ff8',
     dataType: 'json',
     // 551308f413c2be4d33b8bedd for debugging locally
     success: function(data){
