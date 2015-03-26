@@ -177,6 +177,7 @@ $(function () {
     source: function (request, response) {
       $.ajax({
         url: "http://goharirfan.me:3000/services/search",
+        cache: true,
         type: "GET",
         data: request,  // request is the value of search input
         success: function (data) {

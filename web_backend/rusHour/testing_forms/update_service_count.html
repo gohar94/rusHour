@@ -49,6 +49,7 @@
     $.ajax({
         url: 'http://goharirfan.me:3000/services/update_count',
         type: 'post',
+        cache: true,
         dataType: 'json',
         data: {id: id, count: count, operator: operator},
         success: function(data) {
