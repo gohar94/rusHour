@@ -5,6 +5,12 @@ var mongoose = require('mongoose');
 var Services = require('../models/Services.js');
 var ServicesHistory = require('../models/ServicesHistory.js');
 
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 /* GET services listing. */
 router.get('/', function(req, res, next) {
   Services.find(function (err, services) {
