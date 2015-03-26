@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var services = require('./routes/services');
 var user_dashboard = require('./routes/user_dashboard');
+var admin = require('./routes/admin');
 var cors = require('cors')
 
 var app = express();
@@ -17,7 +18,7 @@ app.use(cors());
 
 // for mongodb connection
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://root:root@goharirfan.me:27017/mydb', function(err) {
+mongoose.connect('mongodb://root:root@localhost:27017/mydb', function(err) {
     if(err) {
         console.log('connection error', err);
     } else {
@@ -41,6 +42,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/services', services);
 app.use('/user_dashboard', user_dashboard);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
