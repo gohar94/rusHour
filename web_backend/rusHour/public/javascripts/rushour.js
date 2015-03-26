@@ -237,3 +237,7 @@ socket.on('update_count', function(msg){
     }
   }
 });
+
+socket.on('update_ticker', function(msg){
+  $('#ticker').append($('<li>').text(msg));
+});

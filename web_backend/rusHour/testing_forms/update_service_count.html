@@ -57,7 +57,7 @@
         }
     });
 
-    var stringToEmit = id + "/" + count;
+    var stringToEmit = id + "/" + count + "/" + operator;
     socket.emit('update_count', stringToEmit);
     $('#count').val('');
     
