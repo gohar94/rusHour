@@ -290,9 +290,9 @@ function makeChart() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://goharirfan.me:3000/services/services_history?limit=10&service_id=551308f413c2be4d33b8bedd',
+    url: 'http://goharirfan.me:3000/services/services_history?limit=10&service_id=551476a89bdfc69743cc5ffe',
     dataType: 'json',
-    
+    // 551308f413c2be4d33b8bedd for debugging locally
     success: function(data){
       jQuery.each(data , function() {
         var time_array = this.created_at.split("T")[1].split(":");
