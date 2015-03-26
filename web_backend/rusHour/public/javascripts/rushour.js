@@ -101,7 +101,7 @@ function loadMarkers() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://localhost:3000/services/all',
+    url: 'http://goharirfan.me:3000/services/all',
     dataType: 'json',
     
     success: function(data){
@@ -176,7 +176,7 @@ $(function () {
   $("#searchBox").autocomplete({
     source: function (request, response) {
       $.ajax({
-        url: "http://localhost:3000/services/search",
+        url: "http://goharirfan:3000/services/search",
         type: "GET",
         data: request,  // request is the value of search input
         success: function (data) {
@@ -218,7 +218,7 @@ function fillTickerInitialValues() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://localhost:3000/services/services_history?limit=10',
+    url: 'http://goharirfan:3000/services/services_history?limit=10',
     dataType: 'json',
     
     success: function(data){
@@ -289,7 +289,7 @@ function makeChart() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://localhost:3000/services/services_history?limit=10&service_id=5514676f08b422ca599cebaa',
+    url: 'http://goharirfan.me:3000/services/services_history?limit=10&service_id=5514676f08b422ca599cebaa',
     dataType: 'json',
     // 551308f413c2be4d33b8bedd for local testing
     // 5514676f08b422ca599cebaa for server testing
