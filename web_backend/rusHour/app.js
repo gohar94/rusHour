@@ -17,7 +17,7 @@ app.use(cors());
 
 // for mongodb connection
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://root:root@127.0.0.1:27017/mydb', function(err) {
+mongoose.connect('mongodb://root:root@goharirfan.me:27017/mydb', function(err) {
     if(err) {
         console.log('connection error', err);
     } else {
