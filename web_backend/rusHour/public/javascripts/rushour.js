@@ -176,7 +176,7 @@ $(function () {
   $("#searchBox").autocomplete({
     source: function (request, response) {
       $.ajax({
-        url: "http://goharirfan:3000/services/search",
+        url: "http://goharirfan.me:3000/services/search",
         type: "GET",
         data: request,  // request is the value of search input
         success: function (data) {
@@ -218,7 +218,7 @@ function fillTickerInitialValues() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://goharirfan:3000/services/services_history?limit=10',
+    url: 'http://goharirfan.me:3000/services/services_history?limit=10',
     dataType: 'json',
     
     success: function(data){
