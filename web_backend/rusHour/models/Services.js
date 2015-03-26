@@ -10,7 +10,7 @@ var ServicesSchema = new mongoose.Schema({
   longitude: Number,
   category: String,
   admins: [{type: String}],
-  count: Number,
+  count: { type: Number, default: 0 },
   count_history: [{type: Number}],
   note: String,
   updated_at: { type: Date, default: Date.now }

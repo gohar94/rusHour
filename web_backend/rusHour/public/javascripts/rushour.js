@@ -213,7 +213,7 @@ $(function () {
   });
 });
 
-// TICKER INITIAL FILL
+// TICKER AND CHART INITIAL FILL
 function fillTickerInitialValues() {
   $.ajax({
     type: "GET",
@@ -247,7 +247,6 @@ function fillTickerInitialValues() {
     } 
   });
 }
-window.onload = fillTickerInitialValues();
 
 // SOCKETS for realtime updates
 var socket = io();
@@ -279,3 +278,67 @@ socket.on('update_ticker', function(msg){
   var today = new Date();
   $('#ticker').append($('<li>').text(msg + " at " + today.getHours()+":"+today.getMinutes()));
 });
+
+
+function makeChart() {
+  console.log("making chart");
+  var chart_name = "";
+  var y_values = [0];
+  var x_values = [];
+
+  $.ajax({
+    type: "GET",
+    cache: true,
+    url: 'http://localhost:3000/services/services_history?limit=10&service_id=551308f413c2be4d33b8bedd',
+    dataType: 'json',
+    
+    success: function(data){
+      jQuery.each(data , function() {
+        var time_array = this.created_at.split("T")[1].split(":");
+        var time = time_array[0]+":"+time_array[1];
+        var x = parseInt(String(this.new_count),10);
+        y_values.push(x);
+        x_values.push(time);
+        chart_name = this.name;
+      });
+      
+      var data = {
+        labels: x_values.reverse(),
+        datasets: [
+            {
+                label: chart_name,
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: y_values.reverse(),
+            }
+        ]
+      };
+
+      var options = {
+        //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+        scaleBeginAtZero : false,
+        //String - A legend template
+        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+      };
+
+      var ctx = $("#myChart").get(0).getContext("2d");
+      Chart.defaults.global.responsive = true;
+      var myNewChart = new Chart(ctx);
+      var myLineChart = new Chart(ctx).Line(data, options);
+    },
+    error: function(e) { 
+      console.log(e);
+    } 
+  });
+}
+
+function onLoad() {
+  makeChart();
+  fillTickerInitialValues();
+}
+
+window.onload = onLoad();

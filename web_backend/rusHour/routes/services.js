@@ -87,9 +87,15 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
-/* GET /services_history/:limit */
+/* GET /services_history/:limit&:service_id */
 router.get('/services_history', function(req, res) {
-  var query = ServicesHistory.find().sort({"created_at":-1}).limit(req.query["limit"]);
+  var query;
+  if (req.query["service_id"]) {
+    query = ServicesHistory.find({service_id: req.query["service_id"]}).sort({"created_at":-1}).limit(req.query["limit"]);  
+  } else {
+    query = ServicesHistory.find().sort({"created_at":-1}).limit(req.query["limit"]);  
+  }
+  
   query.exec(function(err, result) {
       if (!err) {
          res.send(result, {

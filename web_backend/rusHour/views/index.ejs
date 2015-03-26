@@ -42,6 +42,9 @@
     <!-- For Socket.io to connect to Node.js server -->
     <script src="/socket.io/socket.io.js"></script>
 
+    <!-- For plotting prediction charts using Chart.js -->
+    <script src="/javascripts/Chart.js"></script>
+
     <style>
       html, body, #map-canvas {
         height: 100%;
@@ -117,6 +120,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <p>Updates around you!</p>
                 <ul id="ticker"></ul>
+                <canvas id="myChart" width="400" height="200"></canvas>
             </div>
         </div>
     </section>
