@@ -331,9 +331,9 @@ function makeChart() {
       var myNewChart = new Chart(ctx);
       var myLineChart = new Chart(ctx).Line(data, options);
     },
-    error: function(e) { 
+    error: function(e) {
       console.log(e);
-    } 
+    }
   });
 }
 
