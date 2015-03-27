@@ -62,9 +62,15 @@ router.get('/auth/facebook', passport.authenticate('facebook'));
 // authentication process by attempting to obtain an access token.  If
 // access was granted, the user will be logged in.  Otherwise,
 // authentication has failed.
-router.get('/auth/facebook/callback', 
-  passport.authenticate('facebook', { successRedirect: '/',
-                                      failureRedirect: '/login' }));
+router.get('/auth/facebook/callback',
+  passport.authorize('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    var user = req.user;
+    console.log(user.name + " has signed in");
+      if (err) { return self.error(err); }
+      self.redirect('/');
+  }
+);
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -77,6 +83,11 @@ passport.deserializeUser(function(user, done) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'RusHour' });
+});
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;
