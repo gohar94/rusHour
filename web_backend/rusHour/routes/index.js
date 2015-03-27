@@ -45,6 +45,7 @@ passport.use(new FacebookStrategy({
                   });
               } else {
                   console.log("user found");
+                  console.log(done);
                   //found user. Return
                   return done(err, user);
               }

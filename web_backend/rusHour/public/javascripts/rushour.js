@@ -37,6 +37,9 @@ function getInfoWindowContent(heading, body) {
 // When the window has finished loading create our google map below
 var map;
 var image = '/images/marker-green-light.png';
+var imageCrowded = '/images/marker-red.png';
+var imageModerate = '/images/marker-orange.png';
+var imageSelf = '/images/marker-turquiose.png';
 var markersArray = [];
 var infoWindowsArray = [];
 var isValidSearch = false;
@@ -72,7 +75,7 @@ function initialize() {
       var marker = new google.maps.Marker({
           position: pos,
           map: map,
-          icon: image,
+          icon: imageSelf,
           title: 'My Current Location',
           id: "0"
       });
@@ -109,31 +112,28 @@ function loadMarkers() {
     success: function(data){
       jQuery.each(data , function() {
         if (this.latitude && this.longitude) {
+          var count = parseInt(this.count);
+          var iconChosen;
+          if (count >= 10) {
+            iconChosen = imageCrowded;
+          } else if (count >=5) {
+            iconChosen = imageModerate;
+          } else {
+            iconChosen = image;
+          }
+          
           var markerPosition = new google.maps.LatLng(this.latitude, this.longitude);
           var marker = new google.maps.Marker({
             position: markerPosition,
             map: map,
             animation: google.maps.Animation.DROP,
             description: this.name + " = " + this.count,
-            icon: image,
+            title: this.name,
+            icon: iconChosen,
             id: this._id
           });
 
           markersArray.push(marker);
-
-          // //hover in
-          // google.maps.event.addListener(marker, 'mouseover', function() {
-          //   marker.infobox.open(mainMap, marker);
-          //   marker.infobox.isOpen = true;
-          // });
-
-          // // hover out
-          // google.maps.event.addListener(marker, 'mouseout', function() {
-          //   if (marker.infobox.isOpen) {
-          //     marker.infobox.close();
-          //     marker.infobox.isOpen = false;
-          //   }
-          // });
           
           var contentString = getInfoWindowContent(marker.description, marker.id);
           
