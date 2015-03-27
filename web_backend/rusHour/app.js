@@ -12,6 +12,7 @@ var services = require('./routes/services');
 var user_dashboard = require('./routes/user_dashboard');
 var admin = require('./routes/admin');
 var cors = require('cors')
+var session = require('cookie-session')
 
 var app = express();
 // enabling cross origin requests
@@ -27,6 +28,8 @@ mongoose.connect('mongodb://root:root@localhost:27017/mydb', function(err) {
     }
 });
 
+require('./config/passport')(passport);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -40,6 +43,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(flash());
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 
 app.use('/', routes);
 app.use('/users', users);
