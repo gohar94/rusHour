@@ -240,15 +240,16 @@ function fillTickerInitialValues() {
         var time_array = this.created_at.split("T")[1].split(":");
         var time = time_array[0]+":"+time_array[1];
         var ticker_string =  this.delta + noun + action + this.name + " at " + time;
-        var elem_list = document.createElement('<li>');
-        var elem_fig = document.createElement('<figure>');
-        var elem_img = document.createElement('<img>');
+        var elem_list = document.createElement('li');
+        var elem_fig = document.createElement('figure');
+        var elem_img = document.createElement('img');
         elem_img.setAttribute('src', '/images/marker-green-light.png');
-        var elem_str = document.createElement('<h3>');
+        var elem_str = document.createElement('h3');
         elem_str.innerHTML = ticker_string;
         elem_fig.appendChild(elem_img);
         elem_list.appendChild(elem_fig);
-        elem_list.appendChild(elem_list);
+        elem_list.appendChild(elem_str);
+        document.getElementById('ticker-wrapper-inner').appendChild(elem_list);
         // $('#ticker-wrapper-inner').append($('<li>').text(ticker_string));
       });
     }, 
@@ -286,16 +287,18 @@ socket.on('update_count', function(msg){
 
 socket.on('update_ticker', function(msg){
   var today = new Date();
-  var elem_list = document.createElement('<li>');
-  var elem_fig = document.createElement('<figure>');
-  var elem_img = document.createElement('<img>');
+  var elem_list = document.createElement('li');
+  var elem_fig = document.createElement('figure');
+  var elem_img = document.createElement('img');
   elem_img.setAttribute('src', '/images/marker-green-light.png');
-  var elem_str = document.createElement('<h3>');
-  var ticker_string = msg + " at " + today.getHours()+":"+today.getMinutes());
+  var elem_str = document.createElement('h3');
+  var ticker_string = msg + " at " + today.getHours()+":"+today.getMinutes();
   elem_str.innerHTML = ticker_string;
   elem_fig.appendChild(elem_img);
   elem_list.appendChild(elem_fig);
-  elem_list.appendChild(elem_list);
+  elem_list.appendChild(elem_str);
+  document.getElementById('ticker-wrapper-inner').appendChild(elem_list);
+
   // $('#ticker-wrapper-inner').append($('<li>').text(msg + " at " + today.getHours()+":"+today.getMinutes()));
 });
 
@@ -312,6 +315,7 @@ function makeChart() {
     url: 'http://goharirfan.me:3000/services/services_history?limit=10&service_id=5514760c9bdfc69743cc5ff8',
     dataType: 'json',
     // 551308f413c2be4d33b8bedd for debugging locally
+    // 5514760c9bdfc69743cc5ff8 for server
     success: function(data){
       jQuery.each(data , function() {
         var time_array = this.created_at.split("T")[1].split(":");
