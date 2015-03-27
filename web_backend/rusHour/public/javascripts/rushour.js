@@ -39,6 +39,8 @@ var map;
 var image = '/images/marker-green-light.png';
 var markersArray = [];
 var infoWindowsArray = [];
+var isValidSearch = false;
+var resultID;
 
 function initialize() {
   var mapOptions = {
@@ -200,16 +202,22 @@ $(function () {
       this.value = ui.item.label; 
       // Prevent other event from not being execute
       event.preventDefault();
+      // console.log("called focus");
     },
     select: function (event, ui) {
       // Prevent value from being put in the input:
       this.value = ui.item.label;
       // Set the id to the next input hidden field
-      $(this).next("input").val(ui.item.value); 
+      $(this).next("input").val(ui.item.value);
       // Prevent other event from not being execute            
       event.preventDefault();
       // // optionnal: submit the form after field has been filled up
       // $('#quicksearch').submit();
+      console.log("called");
+      $('#searchResultModal').modal('show');
+      isValidSearch = true;
+      resultID = ui.item.value;
+      fillSearchModal(ui.item.value);
     }
   });
 });
@@ -281,7 +289,7 @@ socket.on('update_ticker', function(msg){
 });
 
 
-function makeChart() {
+function makeChart(id) {
   console.log("making chart");
   var chart_name = "";
   var y_values = [0];
@@ -290,7 +298,7 @@ function makeChart() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://goharirfan.me:3000/services/services_history?limit=10&service_id=5514760c9bdfc69743cc5ff8',
+    url: 'http://goharirfan.me:3000/services/services_history?limit=10&service_id='+id,
     dataType: 'json',
     // 551308f413c2be4d33b8bedd for debugging locally
     // 5514760c9bdfc69743cc5ff8 for server
@@ -339,8 +347,37 @@ function makeChart() {
 }
 
 function onLoad() {
-  makeChart();
+  // makeChart();
   fillTickerInitialValues();
 }
 
 window.onload = onLoad();
+
+function searchButton() {
+  console.log("button clicked");
+  var searchVal = document.getElementById("searchBox").value;
+  if (searchVal && isValidSearch) {
+    fillSearchModal(resultID);
+    $('#searchResultModal').modal('show');
+  }
+}
+
+function fillSearchModal(id) {
+  console.log("...");
+  $.ajax({
+    type: "GET",
+    cache: true,
+    url: 'http://goharirfan.me:3000/services/id/'+id,
+    dataType: 'json',
+    
+    success: function(data){
+      // document.getElementById("searchResultModalTitle").innerHTML = "gohar";
+      document.getElementById("searchResultModalTitle").innerHTML = data["name"] + " - " + data["address"] + " - " + data["city"];
+      makeChart(id);
+      console.log(data);
+    }, 
+    error: function(e) { 
+      console.log(e);
+    } 
+  }); 
+}
