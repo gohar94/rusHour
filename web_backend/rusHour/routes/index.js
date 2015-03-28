@@ -32,6 +32,7 @@ router.post('/review', function(req, res) {
         console.log("errrr");
         res.json("{aa}");  
       }
+      console.log("errrr NOOOO");
       res.json(post);
     });
 });
