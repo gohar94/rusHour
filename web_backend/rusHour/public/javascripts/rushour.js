@@ -381,3 +381,37 @@ function fillSearchModal(id) {
     } 
   }); 
 }
+
+$('form#review_user').submit(function(){
+  
+  var user_facebook_id = $("#user_facebook_id").val();
+  var username = $("#username").val();
+  var review = $("#review").val();
+  var service_id = $("#service_id").val();
+  var rating = $("#rating").val();
+  console.log(user_facebook_id);
+  console.log(service_id);
+
+  jQuery.support.cors = true;
+  $.ajax({
+      url: 'http://goharirfan.me:3000/review',
+      type: 'post',
+      cache: true,
+      dataType: 'json',
+      data: {user_facebook_id: user_facebook_id, review: review, service_id: service_id, rating: rating, username: username},
+      success: function(data) {
+        console.log(data);
+        // $('#messages').append($('<li>').text(data.name + " " + data.count));
+      }
+  });
+
+  var stringToEmit = user_facebook_name + "/" + review + "/" + rating;
+  socket.emit('service_review', stringToEmit);
+  // $('#count').val('');
+  
+  return false;
+});
+socket.on('service_review', function(msg){
+  // $('#messages').append($('<li>').text(msg));
+  console.log(msg);
+});
