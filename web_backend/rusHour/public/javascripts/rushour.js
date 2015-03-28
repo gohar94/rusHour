@@ -402,19 +402,17 @@ function getAds() {
         dataType: 'json',
         
         success: function(data){
-          jQuery.each(data , function() {
-            console.log(this.image);
-            var url = this.image;
-            var elem = document.createElement("img");
-            elem.setAttribute("src", url);
-            elem.setAttribute("height", "20");
-            elem.setAttribute("width", "20");
-            elem.setAttribute("alt", "Flower");
-            document.getElementById("ads").appendChild(elem);
-          });
           console.log(data);
           for (var i = 0; i < data.length; i++) {
-            console.log(data[i][0]);
+            var category_name = data[i][0];
+            var url = data[i][1];
+            console.log(category_name);
+            var elem = document.createElement("img");
+            elem.setAttribute("src", url);
+            elem.setAttribute("height", "50");
+            elem.setAttribute("width", "50");
+            elem.setAttribute("alt", "Couldn't load image.");
+            document.getElementById("ads").appendChild(elem);
           }
         }, 
         error: function(e) { 
