@@ -157,34 +157,6 @@
                     <strong>email</strong>: <%= user.facebook.email %><br>
                     <strong>name</strong>: <%= user.facebook.name %>
                 </p>
-                <form accept-charset="UTF-8" method="post" id="services_review">
-                    <table>
-                        <tr>
-                          <td><label for="user_facebook_id">user_facebook_id</label></td>
-                          <td><input id="user_facebook_id" name="user_facebook_id" type="hidden" value="<%= user.facebook.id %>"/></td>
-                        </tr>
-                        <tr>
-                          <td><label for="username">username</label></td>
-                          <td><input id="username" name="username" type="hidden" value="<%= user.facebook.name %>"/></td>
-                        </tr>
-                  <tr>
-                    <td><label for="service_id">service_id</label></td>
-                    <td><input id="service_id" name="service_id" type="text" /></td>
-                  </tr>
-                    <tr>
-                        <td><label for="review">review</label></td>
-                        <td><input id="review" name="review" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <!-- 551308f413c2be4d33b8bedd -->
-                        <td><label for="rating">rating</label></td>
-                        <td><input id="rating" name="rating" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td><input name="submit" type="submit" value="Update" /></td>
-                    </tr>
-                    </table>
-                </form>
                 <% } else { %>
                     <a href="/auth/facebook">Login with Facebook</a>
                 <% } %>    

@@ -50,7 +50,6 @@ app.use('/users', users);
 app.use('/services', services);
 app.use('/user_dashboard', user_dashboard);
 app.use('/admin', admin);
-app.use('/review', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
