@@ -15,6 +15,10 @@ module.exports = function (io) {
 				io.emit('chat message', msg);
 			});
 
+			socket.on('services_review', function(msg){
+				io.emit('services_review', msg);
+			});
+
 			socket.on('update_count', function(msg){
 				var message_array = msg.split("/");
 				var id = message_array[0];

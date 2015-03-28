@@ -3,6 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Users = require('../models/Users.js');
+var ServicesReviews = require('../models/ServicesReviews.js');
 
 var router = express();
 var passport = require('passport');
@@ -19,6 +20,16 @@ router.get('/', function(req, res, next) {
 
 // route for showing the profile page
 router.get('/profile', isLoggedIn, function(req, res) {
+    res.render('index', {
+        user : req.user, title: 'RusHour | ' + req.user.facebook.name // get the user out of session and pass to template
+    });
+});
+
+// reviews by users
+router.post('/review', isLoggedIn, function(req, res) {
+    ServicesReviews.create({service_id: req.body.service_id, username: req.user.facebook.name, user_facebook_id: req.user.facebook.id, review: req.body.review, rating: req.body.rating}, function (err, post) {
+      if (err) return next(err);
+    });
     res.render('index', {
         user : req.user, title: 'RusHour | ' + req.user.facebook.name // get the user out of session and pass to template
     });

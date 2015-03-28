@@ -2,13 +2,14 @@
 
 var mongoose = require('mongoose');
 
-var ServicesHistorySchema = new mongoose.Schema({
+var ServicesReviewsSchema = new mongoose.Schema({
   service_id: String,
-  name: String,
-  operator: String,
-  delta: Number,
-  new_count: Number,
+  username: String,
+  user_facebook_id: String,
+  user_id: String,
+  review: String,
+  rating: Number,
   created_at: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('ServicesHistory', ServicesHistorySchema);
+module.exports = mongoose.model('ServicesReviews', ServicesReviewsSchema);
