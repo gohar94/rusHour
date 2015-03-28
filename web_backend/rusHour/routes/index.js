@@ -29,9 +29,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
 router.post('/review', isLoggedIn, function(req, res) {
     ServicesReviews.create({service_id: req.body.service_id, username: req.user.facebook.name, user_facebook_id: req.user.facebook.id, review: req.body.review, rating: req.body.rating}, function (err, post) {
       if (err) return next(err);
-    });
-    res.render('index', {
-        user : req.user, title: 'RusHour | ' + req.user.facebook.name // get the user out of session and pass to template
+      res.json();
     });
 });
 
