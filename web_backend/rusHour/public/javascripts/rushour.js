@@ -218,7 +218,7 @@ $(function () {
       isValidSearch = true;
       resultID = ui.item.value;
       if (document.getElementById('facebook_user_id')) {
-        var facebook_user_id = $('#facebook_user_id').val();
+        var facebook_user_id = document.getElementById('facebook_user_id').innerHTML;
         fillSearchModal(ui.item.value, facebook_user_id);
       } else {
         fillSearchModal(ui.item.value, "-1");
