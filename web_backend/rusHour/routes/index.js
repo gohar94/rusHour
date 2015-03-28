@@ -69,10 +69,10 @@ router.get('/profile', isLoggedIn, function(req, res) {
                 if (categories.indexOf(obj["category"]) == -1)
                     categories = categories + obj["category"] + ",";
             }
-            console.log("final categories are:");
-            console.log(categories);
          }
      });
+    console.log("final categories are:");
+    console.log(categories);
     res.render('index', {
         user : req.user, title: 'RusHour | ' + req.user.facebook.name, categories: categories, ads: ads // get the user out of session and pass to template
     });
