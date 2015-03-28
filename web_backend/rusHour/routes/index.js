@@ -28,7 +28,10 @@ router.get('/profile', isLoggedIn, function(req, res) {
 // reviews by users
 router.post('/review', function(req, res) {
     ServicesReviews.create({service_id: req.body.service_id, username: req.user.facebook.name, user_facebook_id: req.user.facebook.id, review: req.body.review, rating: req.body.rating}, function (err, post) {
-      if (err) return next(err);
+      if (err) {
+        console.log("errrr");
+        res.json("{aa}");  
+      }
       res.json(post);
     });
 });
