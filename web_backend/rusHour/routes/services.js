@@ -4,6 +4,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Services = require('../models/Services.js');
 var ServicesHistory = require('../models/ServicesHistory.js');
+var UsersSearchHistory = require('../models/UsersSearchHistory.js');
 
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -31,6 +32,15 @@ router.get('/all', function(req, res, next) {
 router.get('/id/:id', function(req, res, next) {
   Services.findById(req.params.id, function (err, post) {
     if (err) return next(err);
+    console.log("here");
+    if (req.params.user_facebook_id) {
+      console.log("found fb");
+      UsersSearchHistory.create({user_facebook_id: req.params.user_facebook_id, service_id: req.params.id, service_name: post["name"], category: post["category"]}, function (err, post2) {
+        if (err) return next(err);
+      });
+    } else {
+      console.log("not found fb");
+    }
     res.json(post);
   });
 });
