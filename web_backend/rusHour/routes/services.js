@@ -33,9 +33,9 @@ router.get('/id/:id', function(req, res, next) {
   Services.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     console.log("here");
-    if (req.params.user_facebook_id) {
+    if (req.query["user_facebook_id"]) {
       console.log("found fb");
-      UsersSearchHistory.create({user_facebook_id: req.params.user_facebook_id, service_id: req.params.id, service_name: post["name"], category: post["category"]}, function (err, post2) {
+      UsersSearchHistory.create({user_facebook_id: req.query["user_facebook_id"], service_id: req.params.id, service_name: post["name"], category: post["category"]}, function (err, post2) {
         if (err) return next(err);
       });
     } else {

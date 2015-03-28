@@ -4,6 +4,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Users = require('../models/Users.js');
 var ServicesReviews = require('../models/ServicesReviews.js');
+var UsersSearchHistory = require('../models/UsersSearchHistory.js');
 
 var router = express();
 var passport = require('passport');
@@ -20,8 +21,17 @@ router.get('/', function(req, res, next) {
 
 // route for showing the profile page
 router.get('/profile', isLoggedIn, function(req, res) {
+    var ads = "";
+    var query = UsersSearchHistory.find({user_facebook_id: req.user.facebook.id}).sort({"created_at":-1});
+     query.exec(function(err, result) {
+         if (!err) {
+            ads = result;
+            console.log("searches matching this user are:");
+            console.log(result);
+         }
+     });
     res.render('index', {
-        user : req.user, title: 'RusHour | ' + req.user.facebook.name // get the user out of session and pass to template
+        user : req.user, title: 'RusHour | ' + req.user.facebook.name, ads: ads // get the user out of session and pass to template
     });
 });
 

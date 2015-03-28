@@ -217,7 +217,12 @@ $(function () {
       $('#searchResultModal').modal('show');
       isValidSearch = true;
       resultID = ui.item.value;
-      fillSearchModal(ui.item.value);
+      if (document.getElementById('facebook_user_id')) {
+        var facebook_user_id = $('#facebook_user_id').val();
+        fillSearchModal(ui.item.value, facebook_user_id);
+      } else {
+        fillSearchModal(ui.item.value, "-1");
+      }
     }
   });
 });
@@ -362,12 +367,18 @@ function searchButton() {
   }
 }
 
-function fillSearchModal(id) {
+function fillSearchModal(id, fb_id) {
   console.log("...");
+  var finalUrl;
+  if (fb_id != "-1")
+    finalUrl = 'http://goharirfan.me:3000/services/id/'+id+'?user_facebook_id='+fb_id;
+  else
+    finalUrl = 'http://goharirfan.me:3000/services/id/'+id;
+  
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://goharirfan.me:3000/services/id/'+id,
+    url: finalUrl,
     dataType: 'json',
     
     success: function(data){
