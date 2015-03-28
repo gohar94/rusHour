@@ -22,12 +22,12 @@ router.get('/', function(req, res, next) {
 // route for showing the profile page
 router.get('/profile', isLoggedIn, function(req, res) {
     var ads = "";
+    var categories = [];
     var query = UsersSearchHistory.find({user_facebook_id: req.user.facebook.id}).sort({"created_at":-1});
      query.exec(function(err, result) {
          if (!err) {
             console.log("searches matching this user are:");
             console.log(result);
-            var categories = [];
             for ( var i = 0; i < result.length; i++) {
                 var obj = result[i];
                 if (!categories.indexOf(obj["category"]))
