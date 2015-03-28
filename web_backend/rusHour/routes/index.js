@@ -12,10 +12,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'RusHour' });
 });
 
-router.get('/', function(req, res) {
-    res.render('index.ejs'); // load the index.ejs file
-});
-
 // route for login form
 // route for processing the login form
 // route for signup form
@@ -23,7 +19,7 @@ router.get('/', function(req, res) {
 
 // route for showing the profile page
 router.get('/profile', isLoggedIn, function(req, res) {
-    res.render('profile.ejs', {
+    res.render('profile', {
         user : req.user // get the user out of session and pass to template
     });
 });
