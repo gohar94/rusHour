@@ -395,6 +395,8 @@ function fillSearchModal(id, fb_id) {
 
 function getAds() {
   console.log("getting ads");
+  var fb_id = $('#facebook_user_id').val();
+  console.log(fb_id);
   if (document.getElementById("facebook_user_id")) {
     console.log("getting ads actually");
     var fb_id = $('#facebook_user_id').val();
@@ -420,5 +422,7 @@ function getAds() {
         console.log(e);
       } 
     }); 
+  } else {
+    console.log("no id found");
   }
 }
