@@ -28,7 +28,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
 // FACEBOOK ROUTES =====================
 // =====================================
 // route for facebook authentication and login
-router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+router.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email', 'user_feed', 'read_stream'] }));
 
 // handle the callback after facebook has authenticated the user
 router.get('/auth/facebook/callback',
