@@ -382,7 +382,8 @@ function fillSearchModal(id) {
   }); 
 }
 
-$('#review_user').submit(function(){
+$('form#review_user').submit(function(event){
+  event.preventDefault();
   console.log("im here");
   
   var user_facebook_id = $("#user_facebook_id").val();
