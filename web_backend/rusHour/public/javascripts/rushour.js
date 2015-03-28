@@ -351,13 +351,6 @@ function makeChart(id) {
   });
 }
 
-function onLoad() {
-  fillTickerInitialValues();
-  getAds();
-}
-
-window.onload = onLoad();
-
 function searchButton() {
   console.log("button clicked");
   var searchVal = document.getElementById("searchBox").value;
@@ -426,3 +419,10 @@ function getAds() {
     console.log("no id found");
   }
 }
+
+function onLoad() {
+  fillTickerInitialValues();
+  getAds();
+}
+
+window.onload = onLoad();
