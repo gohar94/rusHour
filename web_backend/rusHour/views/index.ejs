@@ -83,10 +83,10 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">Page2</a>
+                        <a class="page-scroll" href="#about">What's hot?</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#map-canvas">Map</a>
+                        <a class="page-scroll" href="#map-canvas">Around you!</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">What to put here??</a>
@@ -150,8 +150,9 @@
                     <strong>email</strong>: <%= user.facebook.email %><br>
                     <strong>name</strong>: <%= user.facebook.name %>
                 </p>
-                <% } %>
-                <a href="/auth/facebook">Login with Facebook</a>
+                <% } else { %>
+                    <a href="/auth/facebook">Login with Facebook</a>
+                <% } %>    
                 <div id="ticker">
                     <div id="ticker-wrapper">
                         <ul id="ticker-wrapper-inner">
