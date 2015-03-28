@@ -411,8 +411,8 @@ function getAds() {
         //   document.getElementById("ads").appendChild(elem);
         // });
         console.log(data);
-        for (c in data) {
-          console.log(c);
+        for (var i = 0; i < data.length; i++) {
+          console.log(data[i][0]);
         }
       }, 
       error: function(e) { 
