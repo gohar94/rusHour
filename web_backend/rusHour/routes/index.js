@@ -48,7 +48,7 @@ router.get('/ads', function(req, res) {
             }
             console.log("final categories are:");
             console.log(categories);
-            res.json(ads);
+            res.json(JSON.stringify(ads));
         } else {
             res.json(err);
         }

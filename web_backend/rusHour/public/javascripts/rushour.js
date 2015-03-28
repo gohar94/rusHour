@@ -392,3 +392,37 @@ function fillSearchModal(id, fb_id) {
     } 
   }); 
 }
+
+function getAds(fb_id) {
+  $.ajax({
+    type: "GET",
+    cache: true,
+    url: 'http://goharirfan.me:3000/ads?user_facebook_id='+fb_id,
+    dataType: 'json',
+    
+    success: function(data){
+      jQuery.each(data , function() {
+        var name = this.name;
+        var action = "";
+        if (this.operator == "inc") {
+          action = "arrived at ";
+        } else {
+          action = "departed from ";
+        }
+        var noun = "";
+        if (this.delta == "1") {
+          noun = " person ";
+        } else {
+          noun = " people ";
+        }
+        var time_array = this.created_at.split("T")[1].split(":");
+        var time = time_array[0]+":"+time_array[1];
+        var ticker_string =  this.delta + noun + action + this.name + " at " + time;
+        $('#ticker-wrapper-inner').append($('<li>').text(ticker_string));
+      });
+    }, 
+    error: function(e) { 
+      console.log(e);
+    } 
+  }); 
+}
