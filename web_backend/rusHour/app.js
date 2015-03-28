@@ -40,11 +40,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ secret: '--- OMMITTED ---' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(flash());
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 
 app.use('/', routes);
 app.use('/users', users);
