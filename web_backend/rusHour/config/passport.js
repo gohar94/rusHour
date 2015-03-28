@@ -55,8 +55,10 @@ module.exports = function(passport) {
 
                 // if the user is found, then log them in
                 if (user) {
+                    console.log("user found");
                     return done(null, user); // user found, return that user
                 } else {
+                    console.log("making user");
                     // if there is no user found with that facebook id, create them
                     var newUser            = new Users();
 
@@ -72,6 +74,7 @@ module.exports = function(passport) {
                             throw err;
 
                         // if successful, return the new user
+                        console.log("user saved and returning");
                         return done(null, newUser);
                     });
                 }
