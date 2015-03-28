@@ -422,7 +422,7 @@ function getAds() {
 
 function onLoad() {
   fillTickerInitialValues();
-  getAds();
+  // getAds();
 }
 
 window.onload = onLoad();
