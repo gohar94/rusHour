@@ -389,12 +389,12 @@ function fillSearchModal(id, fb_id) {
 function getAds() {
   console.log( "ready!" );
     console.log("getting ads");
-    var fb_id = $('#facebook_user_id').val();
+    var fb_id = document.getElementById("facebook_user_id").innerHTML;
     console.log(fb_id);
     if (document.getElementById("facebook_user_id")) {
       console.log("getting ads actually");
       // var fb_id = $('#facebook_user_id').val();
-      var fb_id = document.getElementById("facebook_user_id").innerHTML;
+      // var fb_id = document.getElementById("facebook_user_id").innerHTML;
       $.ajax({
         type: "GET",
         cache: true,
