@@ -43,7 +43,7 @@ router.get('/ads', function(req, res) {
                     } else {
                         array = [obj["category"], "www.else.com"];
                     }
-                    ads.push(array);
+                    ads.push(JSON.stringify(array));
                 }
             }
             console.log("final categories are:");
