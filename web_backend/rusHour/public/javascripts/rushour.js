@@ -393,8 +393,10 @@ function fillSearchModal(id, fb_id) {
   }); 
 }
 
-function getAds(fb_id) {
+function getAds() {
+  console.log("getting ads");
   if (document.getElementById("facebook_user_id")) {
+    console.log("getting ads actually");
     var fb_id = $('#facebook_user_id').val();
     $.ajax({
       type: "GET",
