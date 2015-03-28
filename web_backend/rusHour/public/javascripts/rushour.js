@@ -253,7 +253,7 @@ function fillTickerInitialValues() {
         var time_array = this.created_at.split("T")[1].split(":");
         var time = time_array[0]+":"+time_array[1];
         var ticker_string =  this.delta + noun + action + this.name + " at " + time;
-        $('#ticker-wrapper-inner').append($('<li>').text(ticker_string));
+        $('#carousel-demo2').append($('<li>').text(ticker_string));
       });
     }, 
     error: function(e) { 
@@ -290,7 +290,7 @@ socket.on('update_count', function(msg){
 
 socket.on('update_ticker', function(msg){
   var ticker_string = msg + " at " + today.getHours()+":"+today.getMinutes();
-  $('#ticker-wrapper-inner').append($('<li>').text(ticker_string));
+  $('#carousel-demo2').append($('<li>').text(ticker_string));
 });
 
 
