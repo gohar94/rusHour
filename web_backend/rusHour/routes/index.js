@@ -30,7 +30,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
             console.log(result);
             for ( var i = 0; i < result.length; i++) {
                 var obj = result[i];
-                if (!categories.indexOf(obj["category"]))
+                if (categories.indexOf(obj["category"]) == -1)
                     categories.push(obj["category"]);
             }
             console.log("final categories are:");
