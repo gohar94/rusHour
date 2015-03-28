@@ -12,7 +12,7 @@
     <title><%= title %></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="/stylesheets/rushour.css" rel="stylesheet">
@@ -142,6 +142,14 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <p>Updates around you!</p>
+                <% if (this.user) { %>
+                <p>
+                    <strong>id</strong>: <%= user.facebook.id %><br>
+                    <strong>token</strong>: <%= user.facebook.token %><br>
+                    <strong>email</strong>: <%= user.facebook.email %><br>
+                    <strong>name</strong>: <%= user.facebook.name %>
+                </p>
+                <% } %>
                 <a href="/auth/facebook">Login with Facebook</a>
                 <div id="ticker">
                     <div id="ticker-wrapper">
@@ -165,7 +173,7 @@
     </footer>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="/javascripts/rushour.js"></script>
 

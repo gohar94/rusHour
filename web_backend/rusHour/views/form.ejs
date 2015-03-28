@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+    <script src="/javascripts/bootstrap.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <center><h1>Admin Panel</h1></center>
+    <br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4">
+            <center><h2>Add Service</h2></center>
+            <center><form method="POST" action="?" id="add_service">
+                <label>Name</label><br/>
+                <input type="text" name="name" class="span3"><br/>
+                <label>Address</label><br/>
+                <input type="text" name="address" class="span3"><br/>
+                <label>Latitude</label><br/>
+                <input type="email" name="lat" class="span3"><br/>
+                <label>Longitude</label><br/>
+                <input type="text" name="lng" class="span3"><br/>
+                <label>Category</label><br/>
+                <input type="text" name="category" class="span3"><br/>  
+                <label>Note</label><br/>
+                <input type="text" name="note" class="span3"><br/><br/>
+                <input type="button" value="Reset Form" class="btn btn-danger" onClick="this.form.reset()" />
+                <input type="submit" value="Sign up" class="btn btn-success">
+                <div class="clearfix"></div>
+            </form></center>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-offset-4">
+            <center><h2>Add User</h2></center>
+            <center><form method="POST" action="?">
+                <label>Name</label><br/>
+                <input type="text" name="name" class="span3"><br/>
+                <label>FacebookID</label><br/>
+                <input type="text" name="fid" class="span3"><br/>
+                <label>Provider</label><br/>
+                <input type="email" name="provider" class="span3"><br/>
+                <label>Username</label><br/>
+                <input type="text" name="username" class="span3"><br/>
+                <label>Password</label><br/>
+                <input type="text" name="password" class="span3"><br/>  
+                <label>Email</label><br/>
+                <input type="text" name="email" class="span3"><br/> 
+                <label>Phone</label><br/>
+                <input type="text" name="phone" class="span3"><br/>
+                <label>Note</label><br/>
+                <input type="text" name="note" class="span3"><br/>  
+                <label>Type</label><br/>
+                <select name="type" required>
+                  <option value="premium">Premium</option>
+                  <option value="basic">Basic</option>
+                </select><br><br>
+                <input type="button" value="Reset Form" class="btn btn-danger" onClick="this.form.reset()" />
+                <input type="submit" value="Sign up" class="btn btn-success">
+                <div class="clearfix"></div>
+            </form></center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

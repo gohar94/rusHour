@@ -12,4 +12,9 @@ router.get('/', function(req, res, next) {
   res.render('update_service_count', { title: 'RusHour' });
 });
 
+/* GET /add page. */
+router.get('/add', function(req, res, next) {
+  res.render('form', { title: 'RusHour' });
+});
+
 module.exports = router;
