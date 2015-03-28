@@ -352,8 +352,8 @@ function makeChart(id) {
 }
 
 function onLoad() {
-  // makeChart();
   fillTickerInitialValues();
+  getAds();
 }
 
 window.onload = onLoad();
@@ -394,26 +394,29 @@ function fillSearchModal(id, fb_id) {
 }
 
 function getAds(fb_id) {
-  $.ajax({
-    type: "GET",
-    cache: true,
-    url: 'http://goharirfan.me:3000/ads?user_facebook_id='+fb_id,
-    dataType: 'json',
-    
-    success: function(data){
-      jQuery.each(data , function() {
-        console.log(this.image);
-        var url = this.image;
-        var elem = document.createElement("img");
-        elem.setAttribute("src", url);
-        elem.setAttribute("height", "20");
-        elem.setAttribute("width", "20");
-        elem.setAttribute("alt", "Flower");
-        document.getElementById("ads").appendChild(elem);
-      });
-    }, 
-    error: function(e) { 
-      console.log(e);
-    } 
-  }); 
+  if (document.getElementById("facebook_user_id")) {
+    var fb_id = $('#facebook_user_id').val();
+    $.ajax({
+      type: "GET",
+      cache: true,
+      url: 'http://goharirfan.me:3000/ads?user_facebook_id='+fb_id,
+      dataType: 'json',
+      
+      success: function(data){
+        jQuery.each(data , function() {
+          console.log(this.image);
+          var url = this.image;
+          var elem = document.createElement("img");
+          elem.setAttribute("src", url);
+          elem.setAttribute("height", "20");
+          elem.setAttribute("width", "20");
+          elem.setAttribute("alt", "Flower");
+          document.getElementById("ads").appendChild(elem);
+        });
+      }, 
+      error: function(e) { 
+        console.log(e);
+      } 
+    }); 
+  }
 }
