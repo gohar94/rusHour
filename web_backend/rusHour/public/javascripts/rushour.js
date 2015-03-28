@@ -386,9 +386,49 @@ function fillSearchModal(id, fb_id) {
   }); 
 }
 
+function getAds() {
+  console.log( "ready!" );
+    console.log("getting ads");
+    var fb_id = $('#facebook_user_id').val();
+    console.log(fb_id);
+    if (document.getElementById("facebook_user_id")) {
+      console.log("getting ads actually");
+      // var fb_id = $('#facebook_user_id').val();
+      var fb_id = document.getElementById("facebook_user_id").innerHTML;
+      $.ajax({
+        type: "GET",
+        cache: true,
+        url: 'http://goharirfan.me:3000/ads?user_facebook_id='+fb_id,
+        dataType: 'json',
+        
+        success: function(data){
+          jQuery.each(data , function() {
+            console.log(this.image);
+            var url = this.image;
+            var elem = document.createElement("img");
+            elem.setAttribute("src", url);
+            elem.setAttribute("height", "20");
+            elem.setAttribute("width", "20");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("ads").appendChild(elem);
+          });
+          console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            console.log(data[i][0]);
+          }
+        }, 
+        error: function(e) { 
+          console.log(e);
+        } 
+      }); 
+    } else {
+      console.log("no id found");
+    }
+}
+
 function onLoad() {
   fillTickerInitialValues();
-    // getAds();
+  getAds();
 }
 
 window.onload = onLoad();
