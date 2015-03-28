@@ -19,10 +19,46 @@ router.get('/', function(req, res, next) {
 // route for signup form
 // route for processing the signup form
 
+router.get('/ads', function(req, res) {
+    var ads = [];
+    var categories = [];
+    var query = UsersSearchHistory.find({user_facebook_id: req.query["user_facebook_id"]}).sort({"created_at":-1});
+    query.exec(function(err, result) {
+         if (!err) {
+            console.log("searches matching this user are:");
+            console.log(result);
+            for ( var i = 0; i < result.length; i++) {
+                var obj = result[i];
+                if (categories.indexOf(obj["category"]) == -1) {
+                    categories.push(obj["category"]);
+                    var array = [];
+                    if (obj["category"] == "movie") {
+                        array = [obj["category"], "www.a.com"];
+                    } else if (obj["category"] == "bakery") {
+                        array = [obj["category"], "www.a.com"];
+                    } else if (obj["category"] == "desi") {
+                        array = [obj["category"], "www.a.com"];
+                    } else if (obj["category"] == "continental") {
+                        array = [obj["category"], "www.a.com"];
+                    } else {
+                        array = [obj["category"], "www.else.com"];
+                    }
+                    ads.push(array);
+                }
+            }
+            console.log("final categories are:");
+            console.log(categories);
+            res.json(ads);
+        } else {
+            res.json(err);
+        }
+    });
+ });
+
 // route for showing the profile page
 router.get('/profile', isLoggedIn, function(req, res) {
     var ads = "";
-    var categories = [];
+    var categories = "";
     var query = UsersSearchHistory.find({user_facebook_id: req.user.facebook.id}).sort({"created_at":-1});
      query.exec(function(err, result) {
          if (!err) {
@@ -31,7 +67,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
             for ( var i = 0; i < result.length; i++) {
                 var obj = result[i];
                 if (categories.indexOf(obj["category"]) == -1)
-                    categories.push(obj["category"]);
+                    categories = categories + obj["category"] + ",";
             }
             console.log("final categories are:");
             console.log(categories);
