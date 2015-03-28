@@ -400,16 +400,20 @@ function getAds() {
       dataType: 'json',
       
       success: function(data){
-        jQuery.each(data , function() {
-          console.log(this.image);
-          var url = this.image;
-          var elem = document.createElement("img");
-          elem.setAttribute("src", url);
-          elem.setAttribute("height", "20");
-          elem.setAttribute("width", "20");
-          elem.setAttribute("alt", "Flower");
-          document.getElementById("ads").appendChild(elem);
-        });
+        // jQuery.each(data , function() {
+        //   console.log(this.image);
+        //   var url = this.image;
+        //   var elem = document.createElement("img");
+        //   elem.setAttribute("src", url);
+        //   elem.setAttribute("height", "20");
+        //   elem.setAttribute("width", "20");
+        //   elem.setAttribute("alt", "Flower");
+        //   document.getElementById("ads").appendChild(elem);
+        // });
+        console.log(data);
+        for (c in data) {
+          console.log(c);
+        }
       }, 
       error: function(e) { 
         console.log(e);
