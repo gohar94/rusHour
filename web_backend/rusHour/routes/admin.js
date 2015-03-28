@@ -17,4 +17,14 @@ router.get('/add', function(req, res, next) {
   res.render('form', { title: 'RusHour' });
 });
 
+/* GET /dash page. */
+router.get('/dash', function(req, res, next) {
+  res.render('dash', { title: 'RusHour' });
+});
+
+/* GET /facebook_parser page. */
+router.get('/facebook_parser', function(req, res, next) {
+  res.render('facebook_parser', { title: 'RusHour' });
+});
+
 module.exports = router;
