@@ -1,43 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="RusHour">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rushour">
+    <meta name="author" content="Rushour">
+    <link rel="shortcut icon" href="assets/favicon.png">
 
     <title><%= title %></title>
 
-    <!-- Bootstrap Core CSS -->
+    <!-- Bootstrap core CSS -->
     <link href="/stylesheets/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="/stylesheets/rushour.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/icomoon.css">
+    <link href="/stylesheets/animate-custom.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
-    <!-- jQuery -->
-    <script src="/javascripts/jquery.js"></script>
     
-    <!-- Plugin JavaScript -->
-    <script src="/javascripts/jquery.easing.min.js"></script>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/javascripts/html5shiv.js"></script>
+      <script src="/javascripts/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+  <body data-spy="scroll" data-offset="0" data-target="#navbar-main">
+  
+  
+    <div id="navbar-main">
+      <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+          <a class="navbar-brand hidden-xs hidden-sm" href="index.html"><span class="icon icon-list-ul" style="font-size:30px; color:#3498db;"><img src="assets/img/RSnav.png" alt=""></span></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="#home" class="smoothScroll">Home</a></li>
+            <li> <a href="#about" class="smoothScroll"> Live Feed</a></li>
+            <li> <a href="#services" class="smoothScroll"> Map</a></li>
+            <li> <a href="#tuts" class="smoothScroll"> LoginDetails</a></li>
+            <% if (typeof user !== 'undefined') { %>
+              <li> <a href="#" class="smoothScroll"><%= user.facebook.name %></a></li>
+              <li> <a href="/logout" class="smoothScroll">Logout</a></li>
+            <% } else { %>
+              <li> <a href="/auth/facebook" class="smoothScroll"> Login</a></li>
+            <% } %>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    </div>
+
+  
+  
+        <!-- ==== HEADERWRAP ==== -->
+        <div id="headerwrap" id="home" name="home" style="height: 100vh;">
+            <header class="clearfix">
+                    <h1>Funny Caption</span></h1>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <input type="text" name="searchBox" class="form-control" id="searchBox" autocomplete="off" placeholder="Search for..."/><br/>
+                            <button type="button" onclick="searchButton()" class="btn btn-success">Search</button>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="searchResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="searchResultModalTitle" style="color: black;" >Modal title</h4>
+                          </div>
+                          <div class="modal-body">
+                            <canvas id="myChart"></canvas>
+                          </div>
+                          <div class="modal-footer">
+                            <center><button type="button" class="btn btn-primary" data-dismiss="modal">Close</button></center>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </header>       
+        </div><!-- /headerwrap -->
+        <style>
+              .carousel-demo {
+                width:560px;
+              }
+              .carousel-demo-vertical {
+                height:300px;
+                width:135px;
+              }
+              .carousel-demo li {
+                background:#ccc;
+                border:1px 
+                solid #fff;
+                color:#666;
+                font-weight:bold;
+                font-size:14px;
+                height:65px;
+                list-style:none;
+                padding:0 0 0 0;
+                margin:0 10px 0 0;
+                width: 500px;
+              }
+              .carousel-demo-vertical li {
+                margin:0 0 10px 0;
+              }
+        </style>
+        
+        <!-- ==== ABOUT ==== -->
+        <div class="container" id="about" name="about">
+            <div class="row white">
+            <br>
+                <h1 class="centered">Live Feed</h1>
+                <hr>
+                <div class="row" style=" padding-top: 100px;">
+                <!-- <center><h2>TimeLine1</h2></center> -->
+                  <div id="carousel-demo2" class="col-lg-6 carousel-demo carousel-demo-vertical ">
+                    <ul>
+                      <li>asdasdasdasdafkudhf ljushldfiua</li>
+                      <li>Mohammad Laghari</li>
+                      <li>Gohar Irfan</li>
+                      <li>Qandeel Tariq</li>
+                      <li>Bilal</li>
+                      <li>Ayemen</li>
+                      <li>asdasdasdasdafkudhf ljushldfiua</li>
+                      <li>Mohammad Laghari</li>
+                      <li>Gohar Irfan</li>
+                      <li>Qandeel Tariq</li>
+                      <li>Bilal</li>
+                      <li>Ayemen</li>
+                      <li>asdasdasdasdafkudhf ljushldfiua</li>
+                      <li>Mohammad Laghari</li>
+                      <li>Gohar Irfan</li>
+                      <li>Qandeel Tariq</li>
+                      <li>Bilal</li>
+                      <li>Ayemen</li>
+                    </ul>
+                  </div>
+                  <div id="carousel-demo3" class="col-lg-6 carousel-demo carousel-demo-vertical pull-right">
+                    <ul>
+                      <li>asdasdasdasdafkudhf ljushldfiua</li>
+                      <li>Mohammad Laghari</li>
+                      <li>Gohar Irfan</li>
+                      <li>Qandeel Tariq</li>
+                      <li>Bilal</li>
+                      <li>Ayemen</li>
+                      <li>asdasdasdasdafkudhf ljushldfiua</li>
+                      <li>Mohammad Laghari</li>
+                      <li>Gohar Irfan</li>
+                      <li>Qandeel Tariq</li>
+                      <li>Bilal</li>
+                      <li>Ayemen</li>
+                      <li>asdasdasdasdafkudhf ljushldfiua</li>
+                      <li>Mohammad Laghari</li>
+                      <li>Gohar Irfan</li>
+                      <li>Qandeel Tariq</li>
+                      <li>Bilal</li>
+                      <li>Ayemen</li>
+                    </ul>
+                  </div>
+                  <div>
+                </div>
+            </div>
+        </div><!-- container -->
+        
+        <!-- ==== SECTION DIVIDER1 -->
+        <section class="section-divider textdivider divider1">
+            <div class="container">
+                <h1>DESIGN EXPAND BOUNDARIES</h1>
+                <hr>
+                <p>To achieve real change, we have to expand boundaries. Because the Wild West of what-could-be is unexplored but rife with opportunity.</p>
+            </div><!-- container -->
+        </section><!-- section -->
+        
+        
+        <!-- ==== SERVICES ==== -->
+        <div class="container" id="services" name="services">
+            <br>
+            <br>
+            <h1>Find places near you!!</h1>
+            <div id="map-canvas" style="height:500px;"></div>
+            <div id="ads"></div>
+            <% if (typeof user !== 'undefined') { %>
+            <p>
+                <h1></h1>
+                <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+                <p id="facebook_user_id" value="<%= user.facebook.id %>"><%= user.facebook.id %></p>
+                <strong>id</strong>: <%= user.facebook.id %><br>
+                <strong>token</strong>: <%= user.facebook.token %><br>
+                <strong>email</strong>: <%= user.facebook.email %><br>
+                <strong>name</strong>: <%= user.facebook.name %>
+            </p>
+            <% } %>
+        </div>
+        
+
+        <!-- ==== TEAM MEMBERS ==== -->
+        <div class="container" id="team" name="team">
+        <br>
+            <div class="row white centered">
+                <h1 class="centered">MEET OUR AWESOME TEAM</h1>
+                <hr>
+                <br>
+                <br>
+                <div class="col-lg-3 centered">
+                    <img class="img img-circle" src="assets/img/team/team01.jpg" height="120px" width="120px" alt="">
+                    <br>
+                    <h4><b>Mike Arney</b></h4>
+                    <a href="#" class="icon icon-twitter"></a>
+                    <a href="#" class="icon icon-facebook"></a>
+                    <a href="#" class="icon icon-flickr"></a>
+                    <p>Mike combines an expert technical knowledge with a real eye for design. Working with clients from a wide range of industries, he fully understands client objectives when working on a project, large or small.</p>
+                </div><!-- col-lg-3 -->
+                
+                <div class="col-lg-3 centered">
+                    <img class="img img-circle" src="assets/img/team/team02.jpg" height="120px" width="120px" alt="">
+                    <br>
+                    <h4><b>Tim Davies</b></h4>
+                    <a href="#" class="icon icon-twitter"></a>
+                    <a href="#" class="icon icon-facebook"></a>
+                    <a href="#" class="icon icon-flickr"></a>
+                    <p>Tim is an experienced marcoms practitioner and manages projects from inception to delivery. He understands the synergy between great design and commercial effectiveness which shines through on every project.</p>
+                </div><!-- col-lg-3 -->
+                
+                <div class="col-lg-3 centered">
+                    <img class="img img-circle" src="assets/img/team/team03.jpg" height="120px" width="120px" alt="">
+                    <br>
+                    <h4><b>Michele Lampa</b></h4>
+                    <a href="#" class="icon icon-twitter"></a>
+                    <a href="#" class="icon icon-facebook"></a>
+                    <a href="#" class="icon icon-flickr"></a>
+                    <p>Be a creative director is a hard task, but Michele loves what she does. Her combination of knowledge and expertise is an important pillar in our agency.</p>
+                </div><!-- col-lg-3 -->
+                
+                <div class="col-lg-3 centered">
+                    <img class="img img-circle" src="assets/img/team/team04.jpg" height="120px" width="120px" alt="">
+                    <br>
+                    <h4><b>Jaye Smith</b></h4>
+                    <a href="#" class="icon icon-twitter"></a>
+                    <a href="#" class="icon icon-facebook"></a>
+                    <a href="#" class="icon icon-flickr"></a>
+                    <p>Jaye began making websites when animated logos and scrolling text were cool, but has since found a love for simplicity, creating websites that are a pleasure to browse. Monkey Island Fan.</p>
+                </div><!-- col-lg-3 -->
+                
+            </div><!-- row -->
+        </div><!-- container -->
+        </div>
+
+        
+        <!-- ==== SECTION DIVIDER6 ==== -->
+        <section class="section-divider textdivider divider6">
+            <div class="container">
+                <h1>Hum LUMS k bachay hain ;)</h1>
+                <hr>
+                <p>Blah1</p>
+                <p>Blah2</p>
+                <p><a class="icon icon-twitter" href="#"></a> | <a class="icon icon-facebook" href="#"></a></p>
+            </div><!-- container -->
+        </section><!-- section -->
+
+        <div id="footerwrap">
+            <div class="container">
+                <h4>RusHour</h4>
+            </div>
+        </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+    <script type="text/javascript" src="/javascripts/modernizr.custom.js"></script>
 
     <!-- For Socket.io to connect to Node.js server -->
     <script src="/socket.io/socket.io.js"></script>
@@ -45,188 +289,69 @@
     <!-- For plotting prediction charts using Chart.js -->
     <script src="/javascripts/Chart.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/javascripts/bootstrap.js"></script>
-    <!-- Custom Theme JavaScript -->
+    <script type="text/javascript" src="/javascripts/retina.js"></script>
+    <script type="text/javascript" src="/javascripts/smoothscroll.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.easing.1.3.js"></script>
 
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
+    <script type="text/javascript" src="/javascripts/scrollingcarousel.2.0.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#carousel-demo1').scrollingCarousel();
+        
+        $('#carousel-demo2').scrollingCarousel( {
+          scrollerAlignment : 'vertical',
+          autoScroll: true
+        });
+        $('#carousel-demo3').scrollingCarousel( {
+          scrollerAlignment : 'vertical',
+          autoScroll: true
+        });
+      });
+    </script>
+
+    <script>
+    $( document ).ready(function() {
+    console.log( "ready!" );
+      console.log("getting ads");
+      var fb_id = $('#facebook_user_id').val();
+      console.log(fb_id);
+      if (document.getElementById("facebook_user_id")) {
+        console.log("getting ads actually");
+        // var fb_id = $('#facebook_user_id').val();
+        var fb_id = document.getElementById("facebook_user_id").innerHTML;
+        $.ajax({
+          type: "GET",
+          cache: true,
+          url: 'http://goharirfan.me:3000/ads?user_facebook_id='+fb_id,
+          dataType: 'json',
+          
+          success: function(data){
+            jQuery.each(data , function() {
+              console.log(this.image);
+              var url = this.image;
+              var elem = document.createElement("img");
+              elem.setAttribute("src", url);
+              elem.setAttribute("height", "20");
+              elem.setAttribute("width", "20");
+              elem.setAttribute("alt", "Flower");
+              document.getElementById("ads").appendChild(elem);
+            });
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+              console.log(data[i][0]);
+            }
+          }, 
+          error: function(e) { 
+            console.log(e);
+          } 
+        }); 
+      } else {
+        console.log("no id found");
       }
-      .fixed-height {
-            padding: 1px;
-            max-height: 200px;
-            overflow: auto;
-        }
-    </style>
-    
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <!-- TODO: append &signed_in=true to the above url for signing user in, but that makes loading slow -->
+    });
+
+    </script>
 
     <script src="/javascripts/rushour.js"></script>
-
-</head>
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-car"></i>  <span class="light">Rus</span>Hour
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">What's hot?</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#map-canvas">Around you!</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">What to put here??</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Intro Header -->
-    <header class="intro">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">RusHour</h1>
-                        <input type="text" class="form-control" id="searchBox" autocomplete="off" placeholder="Search for...">
-                        <!-- Button trigger modal -->
-                        <button type="button" onclick="searchButton()" class="btn btn-primary">
-                            Search
-                        </button>
-                        <br/]>
-                        <a href="#about" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Modal -->
-    <div class="modal fade" id="searchResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="searchResultModalTitle" style="color: black;" >Modal title</h4>
-          </div>
-          <div class="modal-body">
-            <canvas id="myChart"></canvas>
-          </div>
-          <div class="modal-footer">
-            <center><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ticker Section -->
-    <section id="about" class="container content-section text-center">
-        <h2>About RusHour</h2>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <p>Updates around you!</p>
-                <% if (typeof user !== 'undefined') { %>
-                <p>
-                    <h1></h1>
-                    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-                    <p id="facebook_user_id" value="<%= user.facebook.id %>"><%= user.facebook.id %></p>
-                    <strong>id</strong>: <%= user.facebook.id %><br>
-                    <strong>token</strong>: <%= user.facebook.token %><br>
-                    <strong>email</strong>: <%= user.facebook.email %><br>
-                    <strong>name</strong>: <%= user.facebook.name %>
-                    <strong>search history</strong>: <%= categories %>
-                    <div id="ads"></div>
-                </p>
-                <% } else { %>
-                    <a href="/auth/facebook">Login with Facebook</a>
-                <% } %>    
-                <div id="ticker">
-                    <div id="ticker-wrapper">
-                        <ul id="ticker-wrapper-inner">
-                        </ul>
-                    </div>
-                </div>
-                <!-- <ul id="ticker"></ul> -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <div id="map-canvas"></div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>Copyright &copy; RusHour Footer and shizz</p>
-        </div>
-    </footer>
-
-</body>
-
-<script>
-$( document ).ready(function() {
-console.log( "ready!" );
-  console.log("getting ads");
-  var fb_id = $('#facebook_user_id').val();
-  console.log(fb_id);
-  if (document.getElementById("facebook_user_id")) {
-    console.log("getting ads actually");
-    // var fb_id = $('#facebook_user_id').val();
-    var fb_id = document.getElementById("facebook_user_id").innerHTML;
-    $.ajax({
-      type: "GET",
-      cache: true,
-      url: 'http://goharirfan.me:3000/ads?user_facebook_id='+fb_id,
-      dataType: 'json',
-      
-      success: function(data){
-        // jQuery.each(data , function() {
-        //   console.log(this.image);
-        //   var url = this.image;
-        //   var elem = document.createElement("img");
-        //   elem.setAttribute("src", url);
-        //   elem.setAttribute("height", "20");
-        //   elem.setAttribute("width", "20");
-        //   elem.setAttribute("alt", "Flower");
-        //   document.getElementById("ads").appendChild(elem);
-        // });
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-          console.log(data[i][0]);
-        }
-      }, 
-      error: function(e) { 
-        console.log(e);
-      } 
-    }); 
-  } else {
-    console.log("no id found");
-  }
-});
-
-</script>
-
+  </body>
 </html>
