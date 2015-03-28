@@ -25,13 +25,20 @@ router.get('/profile', isLoggedIn, function(req, res) {
     var query = UsersSearchHistory.find({user_facebook_id: req.user.facebook.id}).sort({"created_at":-1});
      query.exec(function(err, result) {
          if (!err) {
-            ads = result;
             console.log("searches matching this user are:");
             console.log(result);
+            var categories = [];
+            for ( var i = 0; i < result.length; i++) {
+                var obj = result[i];
+                if (!categories.indexOf(obj["category"]))
+                    category.push(obj["category"]);
+            }
+            console.log("final categories are:");
+            console.log(categories);
          }
      });
     res.render('index', {
-        user : req.user, title: 'RusHour | ' + req.user.facebook.name, ads: ads // get the user out of session and pass to template
+        user : req.user, title: 'RusHour | ' + req.user.facebook.name, categories: categories, ads: ads // get the user out of session and pass to template
     });
 });
 
