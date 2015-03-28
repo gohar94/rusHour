@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 // route for showing the profile page
 router.get('/profile', isLoggedIn, function(req, res) {
     res.render('index', {
-        user : req.user // get the user out of session and pass to template
+        user : req.user, title: 'RusHour | ' + user.name // get the user out of session and pass to template
     });
 });
 
