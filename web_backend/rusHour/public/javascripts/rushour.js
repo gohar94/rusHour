@@ -240,9 +240,9 @@ function fillTickerInitialValues() {
         var name = this.name;
         var action = "";
         if (this.operator == "inc") {
-          action = "arrived at ";
+          action = " arrived at ";
         } else {
-          action = "departed from ";
+          action = " departed from  ";
         }
         var noun = "";
         if (this.delta == "1") {
@@ -250,9 +250,17 @@ function fillTickerInitialValues() {
         } else {
           noun = " people ";
         }
+        var delta = parseInt(this.delta);
+        var ending = "";
+        if (delta < 50) {
+          ending = " HURRY! Avail some exciting deals for the next 1 hour. ";
+        } else {
+          ending = " Too crowded! Get 10% off in 45 mins. ";
+        }
+        var ticker_string =  delta + " percent rush at " + name + ending;
         var time_array = this.created_at.split("T")[1].split(":");
         var time = time_array[0]+":"+time_array[1];
-        var ticker_string =  this.delta + noun + action + this.name + " at " + time;
+        ticker_string = ticker_string + this.delta + noun + action + this.name + " at " + time;
         $('#tickerA').append($('<li>').text(ticker_string));
       });
       $('#carousel-demo2').scrollingCarousel( {
