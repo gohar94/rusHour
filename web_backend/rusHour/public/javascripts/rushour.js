@@ -389,7 +389,10 @@ function fillSearchModal(id, fb_id) {
     
     success: function(data){
       // document.getElementById("searchResultModalTitle").innerHTML = "gohar";
-      document.getElementById("searchResultModalTitle").innerHTML = data["name"] + " - " + data["address"] + " - " + data["city"];
+      document.getElementById("searchResultModalTitle").innerHTML = data["name"];
+      document.getElementById("searchResultModalAddress").innerHTML = data["address"];
+      document.getElementById("searchResultModalCity").innerHTML = data["city"];
+      document.getElementById("searchResultModalCount").innerHTML = data["count"];
       makeChart(id);
       console.log(data);
     }, 
