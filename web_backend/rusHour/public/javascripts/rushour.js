@@ -423,14 +423,18 @@ function getAds() {
             var category_name = data[i][0];
             var url = data[i][1];
             console.log(category_name);
-            var li = document.createElement("li")
+            var li = document.createElement("li");
+            li.setAttribute("id", url);
             var elem = document.createElement("img");
             elem.setAttribute("src", url);
             elem.setAttribute("alt", "Couldn't load image.");
-            li.appendChild(elem);
             document.getElementById("rslides").appendChild(li);
+            document.getElementById(url).appendChild(elem);
             document.getElementById("ads").appendChild(elem);
           }
+          $(function() {
+            $(".rslides").responsiveSlides();
+          });
         }, 
         error: function(e) { 
           console.log(e);
