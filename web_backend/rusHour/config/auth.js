@@ -3,7 +3,7 @@ module.exports = {
     'facebookAuth' : {
         'clientID'      : '907827965914307', // your App ID
         'clientSecret'  : 'ece91de1cdc4a923fd931493fc75898c', // your App Secret
-        'callbackURL'   : 'http://goharirfan.me:3000/auth/facebook/callback'
+        'callbackURL'   : 'http://goharirfan.me/auth/facebook/callback'
     },
 
     'twitterAuth' : {
