@@ -106,7 +106,7 @@ function loadMarkers() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://goharirfan.me:3000/services/all',
+    url: 'http://goharirfan.me/services/all',
     dataType: 'json',
     
     success: function(data){
@@ -178,7 +178,7 @@ $(function () {
   $("#searchBox").autocomplete({
     source: function (request, response) {
       $.ajax({
-        url: "http://goharirfan.me:3000/services/search",
+        url: "http://goharirfan.me/services/search",
         cache: true,
         type: "GET",
         data: request,  // request is the value of search input
@@ -232,7 +232,8 @@ function fillTickerInitialValues() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://goharirfan.me:3000/services/services_history?limit=10',
+    url: 'http://goharirfan.me/
+services/services_history?limit=10',
     dataType: 'json',
     
     success: function(data){
@@ -316,7 +317,7 @@ function makeChart(id) {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://goharirfan.me:3000/services/services_history?limit=10&service_id='+id,
+    url: 'http://goharirfan.me/services/services_history?limit=10&service_id='+id,
     dataType: 'json',
     // 551308f413c2be4d33b8bedd for debugging locally
     // 5514760c9bdfc69743cc5ff8 for server
@@ -377,9 +378,9 @@ function fillSearchModal(id, fb_id) {
   console.log("...");
   var finalUrl;
   if (fb_id != "-1")
-    finalUrl = 'http://goharirfan.me:3000/services/id/'+id+'?user_facebook_id='+fb_id;
+    finalUrl = 'http://goharirfan.me/services/id/'+id+'?user_facebook_id='+fb_id;
   else
-    finalUrl = 'http://goharirfan.me:3000/services/id/'+id;
+    finalUrl = 'http://goharirfan.me/services/id/'+id;
   
   $.ajax({
     type: "GET",
@@ -411,7 +412,7 @@ function getAds() {
       $.ajax({
         type: "GET",
         cache: true,
-        url: 'http://goharirfan.me:3000/ads?user_facebook_id='+fb_id,
+        url: 'http://goharirfan.me/ads?user_facebook_id='+fb_id,
         dataType: 'json',
         
         success: function(data){
