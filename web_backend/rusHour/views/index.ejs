@@ -124,29 +124,11 @@
                 <div class="row" style=" padding-top: 100px;">
                 <!-- <center><h2>TimeLine1</h2></center> -->
                   <div id="carousel-demo2" class="col-lg-6 carousel-demo carousel-demo-vertical ">
-                    <ul>
-                      <li>asdasdasdasdafkudhf ljushldfiua</li>
-                      <li>Mohammad Laghari</li>
-                      <li>Gohar Irfan</li>
-                      <li>Qandeel Tariq</li>
-                      <li>Bilal</li>
-                      <li>Ayemen</li>
-                      <li>asdasdasdasdafkudhf ljushldfiua</li>
-                      <li>Mohammad Laghari</li>
-                      <li>Gohar Irfan</li>
-                      <li>Qandeel Tariq</li>
-                      <li>Bilal</li>
-                      <li>Ayemen</li>
-                      <li>asdasdasdasdafkudhf ljushldfiua</li>
-                      <li>Mohammad Laghari</li>
-                      <li>Gohar Irfan</li>
-                      <li>Qandeel Tariq</li>
-                      <li>Bilal</li>
-                      <li>Ayemen</li>
+                    <ul id="tickerA">
                     </ul>
                   </div>
                   <div id="carousel-demo3" class="col-lg-6 carousel-demo carousel-demo-vertical pull-right">
-                    <ul>
+                    <ul id="tickerB">
                       <li>asdasdasdasdafkudhf ljushldfiua</li>
                       <li>Mohammad Laghari</li>
                       <li>Gohar Irfan</li>
@@ -291,6 +273,7 @@
 
     <script type="text/javascript" src="/javascripts/retina.js"></script>
     <script type="text/javascript" src="/javascripts/smoothscroll.js"></script>
+    <!-- <script type="text/javascript" src="/javascripts/jquery-func.js"></script> -->
     <script type="text/javascript" src="/javascripts/jquery.easing.1.3.js"></script>
 
     <script type="text/javascript" src="/javascripts/scrollingcarousel.2.0.min.js"></script>
@@ -298,10 +281,10 @@
       $(document).ready(function() {
         $('#carousel-demo1').scrollingCarousel();
         
-        $('#carousel-demo2').scrollingCarousel( {
-          scrollerAlignment : 'vertical',
-          autoScroll: true
-        });
+        // $('#carousel-demo2').scrollingCarousel( {
+        //   scrollerAlignment : 'vertical',
+        //   autoScroll: true
+        // });
         $('#carousel-demo3').scrollingCarousel( {
           scrollerAlignment : 'vertical',
           autoScroll: true
