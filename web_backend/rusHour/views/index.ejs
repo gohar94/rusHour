@@ -283,11 +283,10 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                 <i class="fa fa-bars"></i>
             </button>
-          <a class="navbar-brand hidden-xs hidden-sm" href="index.html"><span class="icon icon-list-ul" style="font-size:30px; color:#3498db;"><img src="/images/RSnav.png" alt=""></span></a>
+          <a class="navbar-brand hidden-xs hidden-sm" href="/"><span class="icon icon-list-ul" style="font-size:30px; color:#3498db;"><img src="/images/RSnav.png" alt=""></span></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav pull-right">
-            <li><a href="#home" class="smoothScroll">Home</a></li>
             <li> <a href="#about" class="smoothScroll">What's Hot?</a></li>
             <li> <a href="#services" class="smoothScroll">Around You!</a></li>
             <!-- <li> <a href="#tuts" class="smoothScroll"></a></li> -->
@@ -295,7 +294,7 @@
               <li> <a href="#" class="smoothScroll"><%= user.facebook.name %></a></li>
               <li> <a href="/logout" class="smoothScroll">Logout</a></li>
             <% } else { %>
-              <li><a href="/auth/facebook" class="smoothScroll">Login</a></li>
+              <li><a href="/auth/facebook" class="smoothScroll fa fa-facebook"></a></li>
             <% } %>
         </div><!--/.nav-collapse -->
       </div>
@@ -367,7 +366,7 @@
               .carousel-demo-vertical {
                 height:400px;
                 width:135px;
-                margin-right: 100px;
+                margin-right: 180px;
               }
               .carousel-demo li {
                 background:rgb(231,202,27);
@@ -426,8 +425,8 @@
         <div class="container" id="about" name="about" >
             <div class="row white">
             <br>
-                <h1 class="centered">Live Feed</h1>
-                <hr>
+                <h1 class="centered" style="color: #000"><strong>What's hot?</strong></h1>
+                <hr><br/><br/>
                 <div class="row" style=" padding-top: 100px;">
                   <div id="carousel-demo2" class="col-lg-8 carousel-demo carousel-demo-vertical ">
                     <ul id="tickerA">
@@ -446,7 +445,8 @@
         <div class="container" id="services" name="services">
             <br>
             <br>
-            <h1>Find places near you!!</h1>
+            <h1 class="centered" style="color: #000"><strong>Around You!</strong></h1>
+            <hr>
             <div id="map-canvas" style="height:500px;"></div>
             <div id="ads"></div>
             <% if (typeof user !== 'undefined') { %>
