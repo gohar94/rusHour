@@ -301,6 +301,7 @@ socket.on('update_count', function(msg){
 });
 
 socket.on('update_ticker', function(msg){
+  var today = new Date();
   var ticker_string = msg + " at " + today.getHours()+":"+today.getMinutes();
   $('#tickerA').append($('<li>').text(ticker_string));
 });
