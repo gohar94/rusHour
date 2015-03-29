@@ -426,11 +426,10 @@ function getAds() {
             var li = document.createElement("li")
             var elem = document.createElement("img");
             elem.setAttribute("src", url);
-            elem.setAttribute("height", "50");
-            elem.setAttribute("width", "50");
             elem.setAttribute("alt", "Couldn't load image.");
             li.appendChild(elem);
             document.getElementById("rslides").appendChild(li);
+            document.getElementById("ads").appendChild(elem);
           }
         }, 
         error: function(e) { 
