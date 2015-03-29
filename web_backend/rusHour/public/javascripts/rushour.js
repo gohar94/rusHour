@@ -28,7 +28,8 @@ $('.navbar-collapse ul li a').click(function() {
 // TILL HERE
 
 function getInfoWindowContent(heading, body) {
-  var top = '<strong><h3 style="color: black;">' + heading + '</h3></strong>';
+  body = " ";
+  var top = '<strong><h3 style="color: black;">' + heading + "%" + '</h3></strong>';
   var middle = '<p style="color: black;">' + body + '</p>';
   return top+middle;
 }
