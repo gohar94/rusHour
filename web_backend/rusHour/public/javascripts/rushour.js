@@ -423,12 +423,14 @@ function getAds() {
             var category_name = data[i][0];
             var url = data[i][1];
             console.log(category_name);
+            var li = document.createElement("li")
             var elem = document.createElement("img");
             elem.setAttribute("src", url);
             elem.setAttribute("height", "50");
             elem.setAttribute("width", "50");
             elem.setAttribute("alt", "Couldn't load image.");
-            document.getElementById("ads").appendChild(elem);
+            li.appendChild(elem);
+            document.getElementById("rslides").appendChild(li);
           }
         }, 
         error: function(e) { 
