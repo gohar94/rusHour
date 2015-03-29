@@ -425,9 +425,10 @@ function getAds() {
             console.log(category_name);
             
             var elem = document.createElement("img");
+            elem.setAttribute("width", "400px");
+            elem.setAttribute("height", "400px");
             elem.setAttribute("src", url);
             elem.setAttribute("alt", "Couldn't load image.");
-            document.getElementById("ads").appendChild(elem);
 
             $("<li>",{ html:'<img src=' + url + ' />' }).appendTo("#rslides");
           }
