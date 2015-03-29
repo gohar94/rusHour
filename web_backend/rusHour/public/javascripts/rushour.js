@@ -232,8 +232,7 @@ function fillTickerInitialValues() {
   $.ajax({
     type: "GET",
     cache: true,
-    url: 'http://goharirfan.me/
-services/services_history?limit=10',
+    url: 'http://goharirfan.me/services/services_history?limit=10',
     dataType: 'json',
     
     success: function(data){
