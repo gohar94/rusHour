@@ -280,8 +280,9 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                <i class="fa fa-bars"></i>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <!-- <i class="fa fa-bars"></i> -->
+                <span class="fa fa-bars" style="font-size:30px; color:#3498db;"></span>
             </button>
           <a class="navbar-brand hidden-xs hidden-sm" href="/"><span class="icon icon-list-ul" style="font-size:30px; color:#3498db;"><img src="/images/RSnav.png" alt=""></span></a>
         </div>
@@ -290,7 +291,6 @@
             <li> <a href="#about" class="smoothScroll">What's Hot?</a></li>
             <li> <a href="#services" class="smoothScroll">Around You!</a></li>
             <li> <a href="#team" class="smoothScroll">The Real Deal</a></li>
-            <!-- <li> <a href="#tuts" class="smoothScroll"></a></li> -->
             <% if (typeof user !== 'undefined') { %>
               <li> <a href="#" class="smoothScroll"><%= user.facebook.name %></a></li>
               <li> <a href="/logout" class="smoothScroll">Logout</a></li>
