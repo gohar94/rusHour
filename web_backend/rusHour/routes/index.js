@@ -33,13 +33,13 @@ router.get('/ads', function(req, res) {
                     categories.push(obj["category"]);
                     var array = [];
                     if (obj["category"] == "movie") {
-                        array = [obj["category"], "http://2.bp.blogspot.com/-PIzvHY9bfNM/UhNWpuGScAI/AAAAAAAAF24/eawwTFCRzRc/s1600/20-Aug.png"];
+                        array = [obj["category"], "/images/cinema.png"];
                     } else if (obj["category"] == "bakery") {
-                        array = [obj["category"], "https://www-techinasia.netdna-ssl.com/wp-content/uploads/2014/01/Pakistan-Gourmet-mobile.jpg?1cb6c9"];
+                        array = [obj["category"], "/images/bakery.png"];
                     } else if (obj["category"] == "desi") {
-                        array = [obj["category"], "http://www.deals.com.pk/wp-content/uploads/2013/07/BBQ-Tonight-Karachi-51de323dcf33a-Buffet-Image.jpg"];
+                        array = [obj["category"], "/images/desi.png"];
                     } else if (obj["category"] == "continental") {
-                        array = [obj["category"], "http://www.deals.com.pk/wp-content/uploads/2013/07/Nandos.jpg"];
+                        array = [obj["category"], "/images/continental.png"];
                     } else {
                         array = [obj["category"], "www.else.com"];
                     }
