@@ -9,7 +9,7 @@
     <h1>Update Service Count on goharirfan.me:3000</h1>
     <ul id="messages"></ul>
     <div>
-    	<form accept-charset="UTF-8" action="http://goharirfan.me:3000/services/update_count" method="post" id="update_count">
+    	<form accept-charset="UTF-8" action="http://goharirfan.me/services/update_count" method="post" id="update_count">
 	    	<table>
           <tr>
             <td><label for="operator">Operator</label></td>
@@ -36,7 +36,7 @@
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
-  var socket = io("http://goharirfan.me:3000");
+  var socket = io("http://goharirfan.me");
   $('form#update_count').submit(function(){
     
     var id = $("#id").val();
@@ -47,7 +47,7 @@
 
     jQuery.support.cors = true;
     $.ajax({
-        url: 'http://goharirfan.me:3000/services/update_count',
+        url: 'http://goharirfan.me/services/update_count',
         type: 'post',
         cache: true,
         dataType: 'json',
