@@ -9,7 +9,6 @@ if (document.getElementById('facebook_user_id')) {
     facebook_user_id = document.getElementById('facebook_user_id').innerHTML;
 	ga('create', 'UA-61316907-1', { 'userId': facebook_user_id });
 	ga('require', 'displayfeatures');
-	ga(‘set’, ‘&uid’, facebook_user_id);
 	ga('set', 'dimension1', facebook_user_id);
 	console.log("sending user to analytics.");
 } else {
