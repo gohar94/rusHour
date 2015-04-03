@@ -1,0 +1,8 @@
+<div class="find">
+  <%= form_for(:service, :url => {:action => 'find'}) do |f| %>
+    <%= text_field_tag :query, nil, :placeholder => 'Find by Name, Address, City, Country or Category' %>
+    <%= submit_tag("Find Services") %>
+  <% end %>
+</div>
+
+<%= render(:partial => "services_display") %>

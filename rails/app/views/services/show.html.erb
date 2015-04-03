@@ -1,0 +1,19 @@
+<%= link_to("<< Back", {:action => 'index'}, :class => 'back-link') %>
+
+<h3>Service</h3>
+<p>Name: <%= @service.name if @service.name %></p>
+<p>Address: <%= @service.address if @service.address %></p>
+<p>City: <%= @service.city if @service.city %></p>
+<p>Country: <%= @service.country if @service.country %></p>
+<p>Latitude: <%= @service.latitude if @service.latitude %></p>
+<p>Longitude: <%= @service.longitude if @service.longitude %></p>
+<p>Category: <%= @service.category if @service.category %></p>
+<p>Description: <%= @service.description if @service.description %></p>
+<p>Created At: <%= @service.created_at if @service.created_at %></p>
+<p>Updated At: <%= @service.updated_at if @service.updated_at %></p>
+
+<td class="actions">
+  <%= link_to("Show", {:controller => "services", :action => 'show', :id => @service.id}, :class => 'action show') %>
+  <%= link_to("Edit", {:controller => "services", :action => 'edit', :id => @service.id}, :class => 'action edit') %>
+  <%= link_to "Destroy", @service, :confirm => 'Are you sure?', :method => :delete %>
+</td>

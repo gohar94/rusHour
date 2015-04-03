@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <h3>Services</h3>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @services.each do |service| %>
+            <tr>
+              <%= render service %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

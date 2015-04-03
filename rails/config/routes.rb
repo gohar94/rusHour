@@ -1,0 +1,13 @@
+Rails.application.routes.draw do
+  get 'welcome/index'
+
+  resources :users
+  get '/services/find' => 'services#find'
+  post '/services/find' => 'services#find'
+  resources :services
+  root to: 'visitors#index'
+  get '/auth/:provider/callback' => 'sessions#create'
+  get '/signin' => 'sessions#new', :as => :signin
+  get '/signout' => 'sessions#destroy', :as => :signout
+  get '/auth/failure' => 'sessions#failure'
+end

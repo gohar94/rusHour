@@ -1,0 +1,39 @@
+<table summary="Service form fields">
+  <tr>
+    <th><%= f.label(:name) %></th>
+    <td><%= f.text_field(:name, :size => 100) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:address) %></th>
+    <td><%= f.text_field(:address, :size => 200) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:city) %></th>
+    <td><%= f.text_field(:city, :size => 50) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:country) %></th>
+    <td><%= f.text_field(:country, :size => 50) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:latitude) %></th>
+    <td><%= f.text_field(:latitude, :size => 100) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:longitude) %></th>
+    <td><%= f.text_field(:longitude, :size => 100) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:description) %></th>
+    <td><%= f.text_field(:description, :size => 500) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:category) %></th>
+    <td>
+      <%= f.radio_button(:category, "desi") %> Desi
+      <%= f.radio_button(:category, "continental") %> Continental
+      <%= f.radio_button(:category, "fast_food") %> Fast Food
+      <%= f.radio_button(:category, "other") %> Other
+    </td>
+  </tr>
+</table>
