@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <h3>Service Admins</h3>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @service_admins.each do |service_admin| %>
+            <tr>
+              <%= render service_admin %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

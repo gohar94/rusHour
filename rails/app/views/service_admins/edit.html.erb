@@ -1,0 +1,16 @@
+<% @page_title = "RusHour | Update Service Admin" %>
+<%= link_to("<< Back", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="service_admins edit">
+  <h2>Update Service Admin</h2>
+
+  <%= form_for(:service_admin, :url => {:action => 'update', :id => @service_admin.id}, html:{method:'put'}) do |f| %>
+
+    <%= render(:partial => "form", :locals => {:f => f}) %>
+
+    <div class="form-buttons">
+      <%= submit_tag("Update Service Admin") %>
+    </div>
+
+  <% end %>
+</div>

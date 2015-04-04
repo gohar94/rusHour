@@ -26,13 +26,13 @@ class ServicesController < ApplicationController
 	end
 
 	def edit
+		authorized?
 		@service = Service.find(params[:id])
-		# authorize_admin_or_author()
 	end
 
 	def update
+		authorized?
 		@service = Service.find(params[:id])
-		# authorize_admin_or_author()
 		if @service.update_attributes(service_params)
 			flash[:notice] = "Service updated successfully!"
 			redirect_to(:action => 'show', :id => @service.id)
@@ -42,10 +42,23 @@ class ServicesController < ApplicationController
 	end
 
 	def destroy
+		authorized?
 		@service = Service.find(params[:id]).destroy
-		# authorize_admin_or_author()
 		flash[:notice] = "Service '#{@service.id}' deleted successfully!"		
 		redirect_to(:action => 'index')
+	end
+
+	private
+
+	def authorized?
+		unless session[:admin] || (session[:service_admin] && params[:id].to_s == session[:service_id].to_s)
+			flash[:notice] = "You don't have permission to perform this action."
+			if request.env['HTTP_REFERER']
+				redirect_to(:back)
+			else
+				redirect_to(:controller => 'welcome', :action => 'index')
+			end
+		end
 	end
 
 	def service_params

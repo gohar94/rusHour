@@ -1,0 +1,10 @@
+<h3>Admin</h3>
+<p>Username: <%= @admin.username if @admin.username %></p>
+<p>Created At: <%= @admin.created_at if @admin.created_at %></p>
+<p>Updated At: <%= @admin.updated_at if @admin.updated_at %></p>
+
+<td class="actions">
+  <%= link_to("Show", {:controller => "admins", :action => 'show', :id => @admin.id}, :class => 'action show') %>
+  <%= link_to("Edit", {:controller => "admins", :action => 'edit', :id => @admin.id}, :class => 'action edit') %>
+  <%= link_to "Destroy", @admin, :confirm => 'Are you sure?', :method => :delete %>
+</td>

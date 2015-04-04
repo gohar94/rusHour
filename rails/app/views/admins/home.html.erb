@@ -1,0 +1,12 @@
+<% admin = @admin %>
+<%= render admin %>
+
+<ul>
+	<li><%= link_to("Create Admin", {:controller => 'admins', :action => 'new'}, :class => 'action index') %></li>
+	<li><%= link_to("Create Service Admin", {:controller => 'service_admins', :action => 'new'}, :class => 'action index') %></li>
+	<li><%= link_to("Create Service", {:controller => 'services', :action => 'new'}, :class => 'action index') %></li>
+</ul>
+
+<%= render(:partial => "services/services_display") %>
+<%= render(:partial => "admins/admins_display") %>
+<%= render(:partial => "service_admins/service_admins_display") %>

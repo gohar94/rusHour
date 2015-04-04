@@ -1,0 +1,11 @@
+<h3>Service Admin</h3>
+<p>Username: <%= @service_admin.username if @service_admin.username %></p>
+<p>Service ID: <%= @service_admin.service_id if @service_admin.service_id %></p>
+<p>Created At: <%= @service_admin.created_at if @service_admin.created_at %></p>
+<p>Updated At: <%= @service_admin.updated_at if @service_admin.updated_at %></p>
+
+<td class="actions">
+  <%= link_to("Show", {:controller => "service_admins", :action => 'show', :id => @service_admin.id}, :class => 'action show') %>
+  <%= link_to("Edit", {:controller => "service_admins", :action => 'edit', :id => @service_admin.id}, :class => 'action edit') %>
+  <%= link_to "Destroy", @service_admin, :confirm => 'Are you sure?', :method => :delete %>
+</td>

@@ -1,0 +1,5 @@
+<% service_admin = @service_admin %>
+<%= render service_admin %>
+
+<br>
+<%= render(:partial => "services/service", :locals => {:service => @service}) %>

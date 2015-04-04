@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403204407) do
+ActiveRecord::Schema.define(version: 20150403215831) do
 
   create_table "admins", force: true do |t|
-    t.string   "username"
+    t.string   "username",        limit: 50
     t.string   "password_digest"
     t.string   "image_path"
     t.datetime "created_at"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150403204407) do
   end
 
   create_table "service_admins", force: true do |t|
-    t.string   "username"
+    t.string   "username",        limit: 50
     t.string   "password_digest"
     t.integer  "service_id"
     t.string   "image_path"

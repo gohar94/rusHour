@@ -33,4 +33,17 @@ class ApplicationController < ActionController::Base
       end
     end
 
+
+    # custom methods
+    def admin_has_privelages?
+      # only global admin (admin) has these privelages, so ensure if he is logged in
+      unless session[:admin] == true
+        flash[:notice] = "You do not have Global Admin privelages."
+        redirect_to(:controller => "admin", :action => "login")
+        return false
+      else
+        return true
+      end
+    end
+
 end
