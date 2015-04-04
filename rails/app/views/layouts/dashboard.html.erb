@@ -9,6 +9,8 @@
 </head>
 <body>
 
+<%= render(:partial => "layouts/dashboard_navigation_links") %>
+
 <% if !flash[:notice].blank? %>
   <div id="flash_notice">
     <%= flash[:notice] %>

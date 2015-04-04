@@ -19,33 +19,6 @@ class AdminsController < ApplicationController
 		@admins = Admin.all
 	end
 
-	def login		
-		if params[:username].present? && params[:password].present?
-			found_user = Admin.where(:username => params[:username]).first
-			if found_user
-				authorized_user = found_user.authenticate(params[:password])
-			end
-		end
-
-		if authorized_user
-			reset_session
-	    session[:id] = authorized_user.id
-	    session[:username] = authorized_user.username
-	    session[:admin] = true
-      flash[:notice] = "You are now logged in!"
-      redirect_to(:action => "home")
-	  else
-			flash[:notice] = "Invalid username/password."
-			redirect_to(:action => "index")
-		end
-	end
-
-	def logout
-    reset_session
-    flash[:notice] = "Logged out!"
-    redirect_to(:action => "index")
-  end
-
 	def show
 		@admin = Admin.find(params[:id])
 	end

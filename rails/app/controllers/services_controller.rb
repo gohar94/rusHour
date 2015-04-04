@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
 
-	layout "application"
+	layout "dashboard"
 
 	def index
 	  @services = Service.all

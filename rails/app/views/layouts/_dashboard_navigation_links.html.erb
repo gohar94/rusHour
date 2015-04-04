@@ -1,0 +1,7 @@
+<li><%= link_to 'About', page_path('about') %></li>
+
+<% if !session[:id].blank? %>
+  <li><%= link_to 'Sign out', admin_access_logout_path %></li>
+<% else %>
+  <li><%= link_to 'Sign in', admin_access_path %></li>
+<% end %>
